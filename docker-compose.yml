@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  api:
+    container_name: eth_rooms_api
+    image: benarmstrong/eth_rooms_api:latest
+    build:
+      context: ./api
+      dockerfile: dockerfile
+    restart: always
+    links:
+      - database
+    ports:
+      - 81:5000
+    depends_on:
+      - database
+    env_file:
+      - config.env
+
+  database:
+    container_name: eth_rooms_database
+    image: benarmstrong/eth_rooms_db:latest
+    restart: always
+    build:
+      context: ./database
+      dockerfile: dockerfile
+      args:
+        - 'dbname=eth_rooms'
+        - 'db_password=postgres'
+    volumes:
+      - ~/data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432

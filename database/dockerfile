@@ -1,3 +1,9 @@
 FROM postgres
-ENV POSTGRES_DB rooms
+
+# --build-arg db_name=<value>
+ARG db_name=eth_rooms
+ARG db_password=postgres
+
+ENV POSTGRES_PASSWORD=$db_password
+ENV POSTGRES_DB $db_name
 COPY create.sql /docker-entrypoint-initdb.d/create.sql

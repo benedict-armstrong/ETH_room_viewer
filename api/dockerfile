@@ -1,6 +1,13 @@
-FROM python:3.9-alpine
+FROM python
 
-COPY requiments.txt /requirements.txt
+COPY requirements.txt /requirements.txt
 
-CMD ["pip install", "requiments.txt"]
+RUN ["pip", "install", "-r", "requirements.txt"]
+RUN apt-get update
+RUN apt-get install -y locales locales-all
 
+COPY dev/*.py /
+
+CMD python server.py
+
+EXPOSE 5000

@@ -2,3 +2,6 @@ psycopg2
 requests
 bs4
 pandas
+flask
+flask_cors
+lxml
