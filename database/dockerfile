@@ -1,0 +1,3 @@
+FROM postgres
+ENV POSTGRES_DB rooms
+COPY create.sql /docker-entrypoint-initdb.d/create.sql
