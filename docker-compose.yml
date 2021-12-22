@@ -6,7 +6,7 @@ services:
     image: benarmstrong/eth_rooms_api:latest
     build:
       context: ./api
-      dockerfile: dockerfile
+      dockerfile: Dockerfile
     restart: always
     links:
       - database
@@ -17,17 +17,27 @@ services:
     env_file:
       - config.env
 
+  client:
+    container_name: eth_rooms_client
+    image: benarmstrong/eth_rooms_client
+    restart: always
+    build:
+      context: ./frontend/eth_room_frontend
+      dockerfile: Dockerfile
+    ports:
+      - 8007:80
+
   database:
     container_name: eth_rooms_database
     image: benarmstrong/eth_rooms_db:latest
     restart: always
     build:
       context: ./database
-      dockerfile: dockerfile
+      dockerfile: Dockerfile
       args:
         - 'dbname=eth_rooms'
         - 'db_password=postgres'
     volumes:
-      - ~/data:/var/lib/postgresql/data
+      - /Users/ben/Desktop/ETH_room_viewer/database/data:/var/lib/postgresql/data
     ports:
       - 5432:5432
