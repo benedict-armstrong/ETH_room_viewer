@@ -1,9 +1,0 @@
-<div class="filter">
-  <app-filter (updatedFilter)="updatedFilter($event)"></app-filter>
-</div>
-<div class="list">
-  <div class="text-center" *ngIf="rooms.length == 0">
-    <p>No rooms available</p>
-  </div>
-  <app-room-list-item *ngFor="let room of rooms" [room]="room"></app-room-list-item>
-</div>

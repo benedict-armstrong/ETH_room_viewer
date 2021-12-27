@@ -1,6 +1,18 @@
 version: '3'
 
 services:
+  proxy:
+    restart: always
+    container_name: eth_rooms_proxy
+    image: rafpe/docker-haproxy-rsyslog
+    volumes:
+      - ./proxy/haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg
+    ports:
+      - 8007:80
+    links:
+      - eth_rooms_api
+      - eth_rooms_client
+
   api:
     container_name: eth_rooms_api
     image: benarmstrong/eth_rooms_api:latest
@@ -10,8 +22,6 @@ services:
     restart: always
     links:
       - database
-    ports:
-      - 81:5000
     depends_on:
       - database
     env_file:
@@ -22,10 +32,8 @@ services:
     image: benarmstrong/eth_rooms_client
     restart: always
     build:
-      context: ./frontend/eth_room_frontend
+      context: ./frontend
       dockerfile: Dockerfile
-    ports:
-      - 8007:80
 
   database:
     container_name: eth_rooms_database
@@ -39,5 +47,3 @@ services:
         - 'db_password=postgres'
     volumes:
       - /Users/ben/Desktop/ETH_room_viewer/database/data:/var/lib/postgresql/data
-    ports:
-      - 5432:5432
