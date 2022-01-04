@@ -7,6 +7,7 @@ RUN apt-get update
 RUN apt-get install -y locales locales-all
 
 COPY dev/*.py /
+COPY dev/locations.csv locations.csv 
 
 CMD python server.py
 

@@ -1,5 +1,6 @@
 from datetime import date
 import datetime
+import sys
 import re
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -68,8 +69,8 @@ def extractData(html: str, date: date, room_id: int):
             # drop all lines with empty strings
             insert_col(df[day].dropna(), datetime.datetime.strptime(
                 day, '%d.%m.%Y'), room_id)
-    except:
-        print("Error for: {}, {}".format(date, room_id))
+    except(e):
+        print("Error {} for: {}, {}".format(sys.exc_info()[0], date, room_id))
         print('\n')
 
 

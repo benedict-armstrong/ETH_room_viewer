@@ -9,17 +9,35 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllRooms = void 0;
+exports.getAllRoomsStudyTime = exports.getAllRooms = void 0;
 const { Pool, Client } = require('pg');
 const pool = new Pool();
 function getAllRooms() {
     return __awaiter(this, void 0, void 0, function* () {
-        return pool.query(`SELECT * FROM rooms JOIN  (
-      SELECT room_id, MIN(time) as next_booking from (
-        SELECT * FROM bookings WHERE time > NOW()
-      ) v GROUP BY room_id
-    ) bookings ON rooms.id = bookings.room_id`);
+        return pool.query(`SELECT * FROM rooms JOIN  (	
+      SELECT room_id, next_booking FROM (
+        SELECT room_id, MIN(time) as next_booking from (
+            SELECT * FROM bookings WHERE time > NOW()
+            ) v GROUP BY room_id
+        ) x WHERE room_id NOT IN (SELECT room_id FROM bookings WHERE time = date_trunc('hour', now() + interval '1 hour'))
+      ) bookings ON rooms.id = bookings.room_id ORDER BY area DESC, building ASC, next_booking DESC`);
     });
 }
 exports.getAllRooms = getAllRooms;
-// Line 15:  SELECT * FROM bookings WHERE time > NOW()
+function getAllRoomsStudyTime() {
+    return __awaiter(this, void 0, void 0, function* () {
+        return pool.query(`SELECT * FROM rooms JOIN  (	
+      SELECT room_id, next_booking FROM (
+        SELECT room_id, MIN(time) as next_booking from (
+            SELECT * FROM bookings WHERE time > NOW() AND name LIKE '%Arbeitsplätze für Studierende%'
+            ) v GROUP BY room_id
+        ) x WHERE room_id IN (SELECT room_id FROM bookings WHERE time = date_trunc('hour', now() + interval '1 hour'))
+      ) bookings ON rooms.id = bookings.room_id ORDER BY area DESC, building ASC, next_booking DESC`);
+    });
+}
+exports.getAllRoomsStudyTime = getAllRoomsStudyTime;
+// `SELECT * FROM rooms JOIN  (
+//   SELECT room_id, MIN(time) as next_booking from (
+//     SELECT * FROM bookings WHERE time > NOW()
+//   ) v GROUP BY room_id
+// ) bookings ON rooms.id = bookings.room_id ORDER BY area DESC, building ASC, next_booking DESC`

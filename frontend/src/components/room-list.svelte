@@ -3,6 +3,7 @@
 	import type { Building } from '../models/types';
 
 	export let building: Building;
+	export let showFreeUntil = true;
 </script>
 
 <div class="p-2 border-2 border-gray-200">
@@ -11,10 +12,12 @@
 		<div class="m-1">
 			<div class="text-sm mx-2 text-gray-300 flex justify-between">
 				<p><strong>Name</strong> | Type | Capacity</p>
-				<p>Free until</p>
+				{#if showFreeUntil}
+					<p>Free until</p>
+				{/if}
 			</div>
 			{#each building.rooms as room}
-				<RoomListItem {room} />
+				<RoomListItem {room} {showFreeUntil} />
 			{/each}
 		</div>
 	{/if}

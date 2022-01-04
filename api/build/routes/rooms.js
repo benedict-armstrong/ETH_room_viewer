@@ -24,4 +24,14 @@ router.get('', (req, res, next) => __awaiter(void 0, void 0, void 0, function* (
         next();
     }
 }));
+router.get('/lernphase', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const rows = (yield (0, dao_1.getAllRoomsStudyTime)()).rows;
+        return res.json(rows);
+    }
+    catch (err) {
+        console.error(err);
+        next();
+    }
+}));
 module.exports = router;

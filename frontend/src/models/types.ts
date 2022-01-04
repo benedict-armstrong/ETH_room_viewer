@@ -8,11 +8,15 @@ export type Room = {
 	room_number: string;
 	room_type: string;
 	capacity: number | undefined;
-	next_booking: Date | Date;
+	next_booking: Date;
+	url: string | undefined;
+	latitude: number | undefined;
+	longitude: number | undefined;
 };
 
 export interface Building {
 	name: string;
+	location: Location | undefined;
 	rooms: Room[];
 }
 
@@ -20,9 +24,12 @@ export interface Area {
 	name: string;
 	buildings: Building[];
 }
-
 export interface Filter {
 	name: string;
 	values: string[];
-	filterFunction: (array: Array<any>, value: string) => Array<any>;
+	filterFunction: (array: Array<Room>, value: string) => Array<Room>;
+}
+interface Location {
+	longitude: number;
+	latitude: number;
 }

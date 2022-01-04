@@ -19,3 +19,9 @@ CREATE TABLE IF NOT EXISTS bookings (
     CONSTRAINT fk_room FOREIGN KEY(room_id) REFERENCES rooms(id),
     PRIMARY KEY(id)
 );
+
+ALTER TABLE rooms
+ADD latitude VARCHAR(63);
+
+ALTER TABLE rooms
+ADD longitude VARCHAR(63);

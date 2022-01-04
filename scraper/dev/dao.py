@@ -4,19 +4,20 @@ import db
 from datetime import datetime, timedelta
 import os
 
-db.connect(
-    server=os.environ['PGHOST'],
-    database=os.environ['PGDATABASE'],
-    user=os.environ['PGUSER'],
-    password=os.environ['PGPASSWORD']
-)
-
-# db.connect(
-#     server="localhost",
-#     database="eth_rooms",
-#     user="postgres",
-#     password="postgres"
-# )
+if 'PGHOST' in os.environ:
+    db.connect(
+        server=os.environ['PGHOST'],
+        database=os.environ['PGDATABASE'],
+        user=os.environ['PGUSER'],
+        password=os.environ['PGPASSWORD']
+    )
+else:
+    db.connect(
+        server="localhost",
+        database="eth_rooms",
+        user="postgres",
+        password="postgres"
+    )
 
 
 def insert_bookings_list(data):
@@ -25,6 +26,12 @@ def insert_bookings_list(data):
         insert_query = 'insert into bookings (name, time, room_id) values {}'.format(
             records_list_template)
         cursor.execute(insert_query, data)
+
+
+def update_room_lat_lng_values(building_name, latitude, longitude):
+    with get_db_cursor() as cursor:
+        cursor.execute("""update rooms set latitude = %s, longitude = %s where building = %s""", [
+                       latitude, longitude, building_name])
 
 
 def delete_all_room():

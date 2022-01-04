@@ -1,34 +1,33 @@
 <script lang="ts">
 	import type { Filter } from 'src/models/types';
+	import { getUrlParam, removeUrlParam, updateURLParameter } from '../util/urlParams';
 
-	import { areas, fetchAreas, filtered } from '../stores/rooms';
+	import { rooms, filtered } from '../stores/rooms';
 
 	export let filter: Filter;
-	let appliedFilter: string;
+	let appliedFilter = getUrlParam(filter.name);
 
-	async function applyFilter(e) {
-		//await fetchAreas();
+	function applyFilter(e) {
+		appliedFilter = getUrlParam(filter.name);
 
 		if (appliedFilter == e.target.value) {
-			filtered.set($areas);
+			filtered.set($rooms);
 			console.log('no filter applied');
-			appliedFilter = 'none';
+			removeUrlParam(filter.name);
 			return;
 		}
-		appliedFilter = e.target.value;
-		// filter the areas array based on the selected value
-		//let temp = $filtered;
+		updateURLParameter(filter.name, e.target.value);
 
-		filtered.set(filter.filterFunction($areas, e.target.value));
+		filtered.set(filter.filterFunction($rooms, e.target.value));
 	}
 </script>
 
-<div class="text-center">
+<div class="">
 	<div>
 		<p>{filter.name}:</p>
 		<div>
 			{#each filter.values as fv}
-				<button class="rounded-full bg-gray-100 px-4 py-2 m-4 shadow-sm">
+				<button class="rounded-full bg-gray-100 px-3 py-2 m-2 shadow-sm">
 					<input
 						type="radio"
 						id={fv}
@@ -37,7 +36,7 @@
 						on:click={applyFilter}
 						checked={appliedFilter === fv}
 					/>
-					<label for={fv} class="text-gray-600 px-4 py-2">{fv}</label>
+					<label for={fv} class="text-gray-600 px-3 py-2">{fv}</label>
 				</button>
 			{/each}
 		</div>
