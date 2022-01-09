@@ -1,7 +1,6 @@
 from datetime import date
 import datetime
 import sys
-import re
 from bs4 import BeautifulSoup
 import pandas as pd
 from dao import insert_bookings_list
@@ -69,9 +68,8 @@ def extractData(html: str, date: date, room_id: int):
             # drop all lines with empty strings
             insert_col(df[day].dropna(), datetime.datetime.strptime(
                 day, '%d.%m.%Y'), room_id)
-    except(e):
-        print("Error {} for: {}, {}".format(sys.exc_info()[0], date, room_id))
+    except Exception as e:
+        print("Error {} for: {}, {}".format(e, date, room_id))
         print('\n')
-
 
 #extractData("", date=date.today(), room_id=25)

@@ -25,3 +25,5 @@ ADD latitude VARCHAR(63);
 
 ALTER TABLE rooms
 ADD longitude VARCHAR(63);
+
+ALTER TABLE bookings ADD CONSTRAINT bookings_unique_time_room UNIQUE (time, room_id);

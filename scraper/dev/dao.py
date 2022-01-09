@@ -20,10 +20,22 @@ else:
     )
 
 
+def delete_all_past_bookings():
+    with get_db_cursor() as cursor:
+        cursor.execute("""delete from bookings where time < now()""")
+
+
 def insert_bookings_list(data):
     with get_db_cursor() as cursor:
         records_list_template = ','.join(['%s'] * len(data))
-        insert_query = 'insert into bookings (name, time, room_id) values {}'.format(
+        insert_query = """
+        INSERT INTO bookings (name, time, room_id) VALUES {}
+        ON CONFLICT ON CONSTRAINT bookings_unique_time_room 
+        DO UPDATE 
+            SET 
+                time = EXCLUDED.time,
+                name = EXCLUDED.name
+        """.format(
             records_list_template)
         cursor.execute(insert_query, data)
 

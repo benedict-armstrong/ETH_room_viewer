@@ -8,7 +8,7 @@ export type Room = {
 	room_number: string;
 	room_type: string;
 	capacity: number | undefined;
-	next_booking: Date;
+	next_booking: Date | undefined;
 	url: string | undefined;
 	latitude: number | undefined;
 	longitude: number | undefined;

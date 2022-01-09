@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Loading from './loading.svelte';
 	import RoomList from './room-list.svelte';
 
 	export let areas;
@@ -7,7 +6,9 @@
 </script>
 
 {#if areas.length == 0}
-	<Loading />
+	<div class="text-center m-8">
+		<p>No Rooms found</p>
+	</div>
 {:else}
 	{#each areas as area}
 		<div class="m-1 my-3 p-1 ">

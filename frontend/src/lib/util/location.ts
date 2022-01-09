@@ -1,4 +1,4 @@
-import { updateURLParameter } from '../util/urlParams';
+import { updateURLParameter } from '$lib/util/urlParams';
 
 export function getLocation(): void {
 	if (navigator.geolocation) {

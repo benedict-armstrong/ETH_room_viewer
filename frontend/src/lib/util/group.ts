@@ -1,5 +1,5 @@
 import { parseJSON } from 'date-fns';
-import type { Area, Building, Room } from 'src/models/types';
+import type { Area, Building, Room } from '$lib/models/types';
 
 export function groupIntoBuildings(rooms: Array<Room>): Building[] {
 	const buildings = groupHelper(rooms);
@@ -8,18 +8,6 @@ export function groupIntoBuildings(rooms: Array<Room>): Building[] {
 
 export function groupIntoAreas(rooms: Array<Room>): Area[] {
 	const buildings = groupHelper(rooms);
-
-	// sort buildings alphabetically by name
-	// buildings.sort((a, b) => {
-	// 	if (a.name < b.name) {
-	// 		return -1;
-	// 	} else if (a.name > b.name) {
-	// 		return 1;
-	// 	} else {
-	// 		return 0;
-	// 	}
-	// });
-
 	const areas_temp: Area[] = [];
 	for (const building of buildings) {
 		const a = areas_temp.find((a) => a.name === building.rooms[0].area);
@@ -37,7 +25,7 @@ function groupHelper(rooms: Array<Room>): Array<Building> {
 	const buildings: Building[] = [];
 
 	for (const room of rooms) {
-		if (typeof room.next_booking === 'string') {
+		if (typeof room.next_booking === 'string' && room.next_booking != 'null') {
 			// String to date
 			room.next_booking = parseJSON(room.next_booking);
 		}
@@ -59,6 +47,12 @@ function groupHelper(rooms: Array<Room>): Array<Building> {
 	for (const building of buildings) {
 		// Sort rooms by next booking according to time descending
 		building.rooms.sort((a, b) => {
+			if (!a.next_booking) {
+				return 1;
+			}
+			if (!b.next_booking) {
+				return -1;
+			}
 			if (a.next_booking < b.next_booking) {
 				return 1;
 			} else if (a.next_booking > b.next_booking) {

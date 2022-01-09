@@ -6,10 +6,9 @@
 	onMount(() => (ready = true));
 </script>
 
-<nav class="flex justify-center w-full p-3 shadow-lg fixed bg-[#273F76] ">
+<nav class="flex justify-center w-full p-3 shadow-lg fixed bg-[#273F76] z-20">
 	<span class="px-3 border-r border-white">
 		<a href="/">
-			<!-- <img src="eth_rooms_logo.svg" alt="logo" class="w-8 h-8 -mt-1 inline mx-auto" /> -->
 			<svg
 				class="w-8 h-8 -mt-1 inline mx-auto stroke-white"
 				width="100%"

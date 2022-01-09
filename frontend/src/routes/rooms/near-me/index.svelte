@@ -1,35 +1,14 @@
-<!-- <script context="module" lang="ts">
-	import { groupIntoBuildings } from '../stores/group';
-
-	export async function load({ fetch, page }) {
-		const url_api = 'https://eth.benarmstro.ng/api/v1/rooms';
-		const res = await fetch(url_api);
-		const rooms = await res.json();
-
-		// sort buildings by distance to my position
-		const buildings = groupIntoBuildings(rooms);
-
-		if (res.ok) {
-			return {
-				props: {
-					buildings: buildings
-				}
-			};
-		}
-	}
-</script> -->
-<script context="module">
+<!-- <script context="module">
 	export const ssr = false;
-</script>
-
+</script> -->
 <script lang="ts">
-	import { groupIntoBuildings } from '../stores/group';
-	import { filtered } from '../stores/rooms';
-	import { calculateDistance } from '../util/location';
+	import { groupIntoBuildings } from '$lib/util/group';
+	import { filtered } from '$lib/stores/rooms';
+	import { calculateDistance } from '$lib/util/location';
 
-	import RoomList from '../components/room-list.svelte';
-	import type { Building } from '../models/types';
-	import { getUrlParam } from '../util/urlParams';
+	import RoomList from '$lib/components/room-list.svelte';
+	import type { Building } from '$lib/models/types';
+	import { getUrlParam } from '$lib/util/urlParams';
 
 	let buildings: Building[] = groupIntoBuildings($filtered);
 

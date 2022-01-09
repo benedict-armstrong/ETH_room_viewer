@@ -1,10 +1,10 @@
-import { api_url } from '../globals';
-import type { Room } from 'src/models/types';
+import { api_url } from '$lib/global/globals';
+import type { Room } from '$lib/models/types';
 import { writable } from 'svelte/store';
 
-export const filtered = writable<Room[]>([]);
-export const rooms = writable<Room[]>([]);
-export const roomsStudyPhase = writable<Room[]>([]);
+export const filtered = writable<Room[]>();
+export const rooms = writable<Room[]>();
+export const roomsStudyPhase = writable<Room[]>();
 
 const fetchRooms = async () => {
 	const url = api_url + '/rooms';

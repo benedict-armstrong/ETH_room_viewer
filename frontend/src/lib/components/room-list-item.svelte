@@ -21,8 +21,12 @@
 	</p>
 	{#if showFreeUntil}
 		<p>
-			{format(room.next_booking, 'HH:mm')}
-			{format(room.next_booking, 'eee dd/LL')}
+			{#if room.next_booking}
+				{format(room.next_booking, 'HH:mm')}
+				{format(room.next_booking, 'eee dd/LL')}
+			{:else}
+				<span class="text-gray-200 text-sm">no bookings today</span>
+			{/if}
 		</p>
 	{/if}
 </div>
