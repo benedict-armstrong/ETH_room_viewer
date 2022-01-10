@@ -8,6 +8,9 @@ CREATE TABLE IF NOT EXISTS rooms (
     room_number VARCHAR(63) NOT NULL,
     capacity INTEGER,
     room_type VARCHAR(63) NOT NULL,
+    latitude VARCHAR(63),
+    longitude VARCHAR(63),
+    room_data BOOLEAN NOT NULL DEFAULT FALSE,
     PRIMARY KEY(id)
 );
 
@@ -19,11 +22,5 @@ CREATE TABLE IF NOT EXISTS bookings (
     CONSTRAINT fk_room FOREIGN KEY(room_id) REFERENCES rooms(id),
     PRIMARY KEY(id)
 );
-
-ALTER TABLE rooms
-ADD latitude VARCHAR(63);
-
-ALTER TABLE rooms
-ADD longitude VARCHAR(63);
 
 ALTER TABLE bookings ADD CONSTRAINT bookings_unique_time_room UNIQUE (time, room_id);

@@ -8,7 +8,7 @@ services:
     volumes:
       - ./proxy/haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg
     ports:
-      - 8007:80
+      - 8080:80
     links:
       - eth_rooms_api
       - eth_rooms_client
@@ -25,7 +25,7 @@ services:
     depends_on:
       - database
     env_file:
-      - config.env
+      - ./api/.env
 
   client:
     container_name: eth_rooms_client
@@ -46,4 +46,6 @@ services:
         - 'dbname=eth_rooms'
         - 'db_password=postgres'
     volumes:
-      - /Users/ben/Desktop/ETH_room_viewer/database/data:/var/lib/postgresql/data
+      - ./database/data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432

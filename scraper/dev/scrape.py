@@ -8,21 +8,23 @@ import argparse
 import time
 
 
-# def mkdate(datestr) -> date:
-#     try:
-#         return datetime.datetime.strptime(datestr, '%d/%m/%Y')
-#     except ValueError:
-#         raise argparse.ArgumentTypeError(
-#             datestr + ' is not a proper date string (Expected: dd/mm/yyyy)')
+def mkdate(datestr) -> date:
+    try:
+        return datetime.datetime.strptime(datestr, '%d/%m/%Y')
+    except ValueError:
+        raise argparse.ArgumentTypeError(
+            datestr + ' is not a proper date string (Expected: dd/mm/yyyy)')
 
 
 def get_month(d: date):
     locale.setlocale(locale.LC_TIME, 'de_DE.UTF-8')
     return d.strftime("%b")
 
-# parser = argparse.ArgumentParser()
-# parser.add_argument('date', type=mkdate)
-# args = parser.parse_args()
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-d', '--date', type=mkdate, default=date.today(),
+                    help='Date to scrape format: dd/mm/yyyy)')
+args = parser.parse_args()
 
 
 def extract_data_day(d: date,  r1, rooms):
@@ -58,16 +60,14 @@ r1 = requests.get('http://www.rauminfo.ethz.ch/IndexPre.do')
 
 rooms = get_all_rooms()
 
-# date = args.date
+date_to_scrape: date = args.date
 
 try:
-    # Get todays date
-    today = date.today()
-    extract_data_day(today, r1, rooms)
+    extract_data_day(date_to_scrape, r1, rooms)
 
     # if date is a friday run program for monday of next week
-    if today.weekday() == 4:
-        monday = today + datetime.timedelta(days=3)
+    if date_to_scrape.weekday() == 4:
+        monday = date_to_scrape + datetime.timedelta(days=3)
         extract_data_day(monday, r1, rooms)
 except Exception as e:
     print("Error: {} | {}s".format(e, (time.time() - start_time)))

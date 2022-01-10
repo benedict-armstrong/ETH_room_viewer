@@ -51,7 +51,7 @@ def extractData(html: str, date: date, room_id: int):
         df.columns = df.iloc[0]
         df = df[1:]
 
-        # set date (inkluding year) for each day or 'time' (first column) as column header
+        # set date (including year) for each day or 'time' (first column) as column header
         df.rename(columns=lambda x: set_date(
             year=date.year, s=x), inplace=True)
 
