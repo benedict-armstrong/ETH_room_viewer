@@ -3,7 +3,7 @@
 Application to view free Rooms at ETH Zürich
 
 hosted at https://eth.benarmstro.ng<br>
-accessible via http://u.ethz.ch/uFbaA
+accessible via http://u.ethz.ch/uFbaA (Not sure if i'm allowed to redirect from my eth-page to the www so it's a link for now)
 
 The official <a href="http://www.rauminfo.ethz.ch/IndexPre.do">Rauminfo</a>
 site isn't great so I built a new one. This tool shows you all currently available rooms at ETH.
