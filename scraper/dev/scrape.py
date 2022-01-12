@@ -2,7 +2,7 @@ import datetime
 import requests
 from extract_data import extractData
 from datetime import date
-from dao import get_all_rooms, delete_all_past_bookings
+from dao import get_all_rooms, delete_all_past_bookings, update_rooms_where_data_available
 import locale
 import argparse
 import time
@@ -69,6 +69,7 @@ try:
     if date_to_scrape.weekday() == 4:
         monday = date_to_scrape + datetime.timedelta(days=3)
         extract_data_day(monday, r1, rooms)
+    update_rooms_where_data_available()
 except Exception as e:
     print("Error: {} | {}s".format(e, (time.time() - start_time)))
 else:

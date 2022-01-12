@@ -28,6 +28,8 @@ function groupHelper(rooms: Array<Room>): Array<Building> {
 		if (typeof room.next_booking === 'string' && room.next_booking != 'null') {
 			// String to date
 			room.next_booking = parseJSON(room.next_booking);
+			// Subtract one hour from next_booking to adjust for timezone
+			room.next_booking.setHours(room.next_booking.getHours() - 1);
 		}
 		room.url = `http://www.rauminfo.ethz.ch/RauminfoPre.do?region=${room.region.charAt(
 			0

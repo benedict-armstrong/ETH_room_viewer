@@ -20,7 +20,7 @@ function getAllRooms() {
           SELECT room_id, MIN(time) as next_booking from (
             SELECT * FROM bookings WHERE time > date_trunc('hour', now() + interval '1 hour')
           ) v GROUP BY room_id
-        ) r ON rooms.id = r.room_id
+        ) r ON rooms.id = r.room_id WHERE room_data
       ) x WHERE room_id NOT IN (SELECT room_id FROM bookings WHERE time = date_trunc('hour', now() + interval '1 hour'))
     ) bookings ON rooms.id = bookings.room_id ORDER BY area DESC, building ASC, next_booking DESC`);
     });
@@ -36,8 +36,3 @@ function getAllRoomsStudyTime() {
     });
 }
 exports.getAllRoomsStudyTime = getAllRoomsStudyTime;
-// `SELECT * FROM rooms JOIN  (
-//   SELECT room_id, MIN(time) as next_booking from (
-//     SELECT * FROM bookings WHERE time > NOW() AND name LIKE '%Arbeitsplätze für Studierende%
-//   ) v GROUP BY room_id
-// ) bookings ON rooms.id = bookings.room_id ORDER BY area DESC, building ASC, next_booking DESC`

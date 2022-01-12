@@ -34,7 +34,9 @@
 	</p>
 </div> -->
 <p class="m-5 text-center">
-	<a class="underline text-sky-700" href="/rooms/lernphase">Rooms during Lernphase</a>
+	Be aware that rooms might be locked even if they are free. During lernphase you can find rooms for
+	studying
+	<a class="underline text-sky-700" href="/rooms/lernphase">here</a>
 </p>
 {#if !$filtered}
 	<Loading />

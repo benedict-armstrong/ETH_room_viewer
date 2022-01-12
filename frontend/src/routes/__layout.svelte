@@ -20,6 +20,6 @@
 		height: 60px;
 		background-color: #273f76;
 		width: 100%;
-		z-index: 1;
+		z-index: 20;
 	}
 </style>
