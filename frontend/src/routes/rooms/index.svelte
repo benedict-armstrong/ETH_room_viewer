@@ -5,6 +5,7 @@
 	import { filtered, rooms } from '$lib/stores/rooms';
 	import { search } from '$lib/stores/search';
 	import { onDestroy, onMount } from 'svelte';
+	import { pwaTrackingListeners } from '$lib/util/pwaListener';
 
 	const unsubscribe = search.subscribe((s) => {
 		if (s.length > 0) {
@@ -22,6 +23,27 @@
 	});
 
 	onDestroy(() => unsubscribe);
+
+	onMount(() => {
+		const isBrowser = typeof window !== 'undefined';
+
+		if (isBrowser) {
+			pwaTrackingListeners();
+		}
+
+		if (isBrowser && 'serviceWorker' in navigator) {
+			window.addEventListener('load', () => {
+				navigator.serviceWorker
+					.register('/sw.js')
+					.then(() => {
+						console.log('Service worker registered');
+					})
+					.catch((err) => {
+						console.log('Service worker registration failed', err);
+					});
+			});
+		}
+	});
 </script>
 
 <!-- <div class="text-center my-8 mx-5">

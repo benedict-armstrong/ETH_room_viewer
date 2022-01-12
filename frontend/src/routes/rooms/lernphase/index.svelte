@@ -1,15 +1,15 @@
 <script lang="ts">
 	import { groupIntoAreas } from '$lib/util/group';
-	import { rooms, roomsStudyPhase } from '$lib/stores/rooms';
+	import { roomsStudyPhase, roomsStudyPhaseFiltered } from '$lib/stores/rooms';
 	import AreaList from '$lib/components/area-list.svelte';
 	import Loading from '$lib/components/loading.svelte';
 	import { search } from '$lib/stores/search';
-	import { onDestroy } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 
 	const unsubscribe = search.subscribe((s) => {
-		if (s.length > 0) {
-			roomsStudyPhase.set(
-				$rooms.filter(
+		if (s.length > 0 && $roomsStudyPhase) {
+			roomsStudyPhaseFiltered.set(
+				$roomsStudyPhase.filter(
 					(r) =>
 						r.name.toLowerCase().includes(s.toLowerCase()) ||
 						r.area.toLowerCase().includes(s.toLowerCase()) ||
@@ -17,7 +17,7 @@
 				)
 			);
 		} else {
-			roomsStudyPhase.set($rooms);
+			roomsStudyPhaseFiltered.set($roomsStudyPhase);
 		}
 	});
 
@@ -26,8 +26,8 @@
 
 <h1 class="text-lg text-center m-4">Available during Lernphase for studing (8-21h):</h1>
 
-{#if !$roomsStudyPhase}
+{#if !$roomsStudyPhaseFiltered}
 	<Loading />
 {:else}
-	<AreaList areas={groupIntoAreas($roomsStudyPhase)} showFreeUntil={false} />
+	<AreaList areas={groupIntoAreas($roomsStudyPhaseFiltered)} showFreeUntil={false} />
 {/if}

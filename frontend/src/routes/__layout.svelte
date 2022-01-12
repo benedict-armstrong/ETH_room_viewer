@@ -3,7 +3,7 @@
 	import Nav from '$lib/components/nav.svelte';
 </script>
 
-<div id="apple-touch-status-bar" />
+<!-- <div id="apple-touch-status-bar" /> -->
 
 <Nav />
 
@@ -13,7 +13,7 @@
 	</div>
 </div>
 
-<style>
+<!-- <style>
 	#apple-touch-status-bar {
 		position: fixed;
 		transform: translateY(-60px);
@@ -22,4 +22,4 @@
 		width: 100%;
 		z-index: 20;
 	}
-</style>
+</style> -->

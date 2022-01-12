@@ -5,6 +5,7 @@ import { writable } from 'svelte/store';
 export const filtered = writable<Room[]>();
 export const rooms = writable<Room[]>();
 export const roomsStudyPhase = writable<Room[]>();
+export const roomsStudyPhaseFiltered = writable<Room[]>();
 
 const fetchRooms = async () => {
 	const url = api_url + '/rooms';
@@ -19,6 +20,7 @@ const fetchRoomsStudyPhase = async () => {
 	const response = await fetch(url);
 	const r = await response.json();
 	roomsStudyPhase.set(r);
+	roomsStudyPhaseFiltered.set(r);
 };
 
 fetchRooms();
