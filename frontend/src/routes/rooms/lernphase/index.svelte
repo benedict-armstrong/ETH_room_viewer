@@ -49,7 +49,7 @@
 	onDestroy(() => unsubscribe);
 </script>
 
-<h1 class="text-lg text-center m-4">Available during Lernphase for studing (8-21h):</h1>
+<h1 class="text-lg text-center m-4">Available during Lernphase for studying (8-21h):</h1>
 
 {#if !filtered}
 	<Loading />

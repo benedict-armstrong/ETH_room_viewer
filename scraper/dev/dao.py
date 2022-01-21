@@ -25,6 +25,12 @@ def delete_all_past_bookings():
         cursor.execute("""delete from bookings where time < now()""")
 
 
+def update_rooms_where_data_available():
+    with get_db_cursor() as cursor:
+        cursor.execute(
+            """update rooms set room_data = true where id in (select room_id from bookings)""")
+
+
 def insert_bookings_list(data):
     with get_db_cursor() as cursor:
         records_list_template = ','.join(['%s'] * len(data))
