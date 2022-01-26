@@ -15,6 +15,7 @@ If you have any suggestions for improvements or questions send me an email. Feel
 - 'add to home-screen' popup/message if on IOS/Android
 - filter by proximity to current location
 - add filters especially for room_type
+- reporting rooms (locked, damaged equipment etc...)
 
 ---
 
