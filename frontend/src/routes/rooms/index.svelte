@@ -76,6 +76,8 @@
 	Be aware that rooms might be locked even if they are free. During lernphase you can find rooms for
 	studying
 	<a sveltekit:prefetch class="underline text-sky-700" href="/rooms/lernphase">here</a>
+	<br />
+	<a class="underline text-sky-700" href="/map-view/hg">Map View</a>
 </p>
 {#if !filtered}
 	<Loading />

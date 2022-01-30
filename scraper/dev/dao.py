@@ -1,4 +1,3 @@
-from typing import Tuple
 from db import get_db_cursor
 import db
 from datetime import datetime, timedelta
@@ -13,7 +12,7 @@ if 'PGHOST' in os.environ:
     )
 else:
     db.connect(
-        server="localhost",
+        server="ben-docker-1",
         database="eth_rooms",
         user="postgres",
         password="postgres"
@@ -60,6 +59,13 @@ def delete_all_room():
 def get_all_rooms():
     with get_db_cursor() as cursor:
         cursor.execute("""select * from rooms""")
+        return cursor.fetchall()
+
+
+def get_all_rooms_in_building(building_name):
+    with get_db_cursor() as cursor:
+        cursor.execute(
+            """select * from rooms where building = %s""", [building_name])
         return cursor.fetchall()
 
 
