@@ -64,11 +64,11 @@ for filename in os.listdir('./images/raw'):
         mask = Image.fromarray(room_mask)
         image = Image.fromarray(cropped_image)
 
-        if not os.path.isfile('./images/floorplans/' + floorplan_filename + ".png"):
+        if not os.path.isfile('./images/floorplans/' + floorplan_filename + ".webp"):
             # Save cropped and transparent plan
             image.save('./images/floorplans/' +
-                       floorplan_filename + ".png", 'PNG')
+                       floorplan_filename + ".webp", 'WebP')
 
         # Save mask for room
         mask.save('./images/room_masks/' +
-                  filename + "_mask.png", 'PNG')
+                  filename + "_mask.webp", 'WebP')
