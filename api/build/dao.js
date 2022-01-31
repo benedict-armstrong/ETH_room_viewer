@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllRoomsStudyTime = exports.getAllRooms = void 0;
-const { Pool, Client } = require('pg');
+exports.getMapDataByBuilding = exports.getAllRoomsStudyTime = exports.getAllRooms = void 0;
+const { Pool } = require('pg');
 const pool = new Pool();
 function getAllRooms() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -36,3 +36,25 @@ function getAllRoomsStudyTime() {
     });
 }
 exports.getAllRoomsStudyTime = getAllRoomsStudyTime;
+function getMapDataByBuilding(building) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const query = {
+            // give the query a unique name
+            name: 'fetch-map-data',
+            text: `select * from map_data as map_data JOIN (
+      SELECT * FROM rooms JOIN  (	
+          SELECT room_id, next_booking FROM (
+            SELECT id as room_id, next_booking FROM rooms LEFT JOIN (
+              SELECT room_id, MIN(time) as next_booking from (
+                SELECT * FROM bookings WHERE time > date_trunc('hour', now() + interval '1 hour')
+              ) v GROUP BY room_id
+            ) r ON rooms.id = r.room_id WHERE room_data
+          ) x WHERE room_id NOT IN (SELECT room_id FROM bookings WHERE time = date_trunc('hour', now() + interval '1 hour'))
+        ) bookings ON rooms.id = bookings.room_id 
+    )rooms on map_data.room_id = rooms.id where building = $1`,
+            values: [building],
+        };
+        return pool.query(query);
+    });
+}
+exports.getMapDataByBuilding = getMapDataByBuilding;

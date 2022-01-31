@@ -12,7 +12,9 @@ export type Room = {
 	url: string | undefined;
 	latitude: number | undefined;
 	longitude: number | undefined;
-	//map_data?: number;
+	points?: string;
+	height?: number;
+	width?: number;
 };
 
 export interface Building {
@@ -33,10 +35,4 @@ export interface Filter {
 interface Location {
 	longitude: number;
 	latitude: number;
-}
-
-interface MapData {
-	points: string;
-	height: number;
-	width: number;
 }

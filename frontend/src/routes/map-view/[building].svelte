@@ -4,23 +4,17 @@
 	export async function load({ params, fetch }) {
 		const { building } = params;
 
-		const url = `${api_url}/rooms`;
+		const url = `${api_url}/rooms/map-data/${building}`;
 		const res = await fetch(url);
-		const rooms = (await res.json()).filter((room) => room.building === building.toUpperCase());
+		const rooms = await res.json();
 
-		const floors_list = [
-			...new Set(
-				rooms.filter((room) => room.building === building.toUpperCase()).map((room) => room.floor)
-			)
-		].sort();
+		const floors_list = [...new Set(rooms.map((room) => room.floor))].sort();
 
 		let floors = [];
 		for (let floor of floors_list) {
 			floors.push({
 				floor: floor,
-				rooms: rooms
-					.filter((room) => room.floor.toUpperCase() === floor.toUpperCase())
-					.map((room) => (room.mask = {}))
+				rooms: rooms.filter((room) => room.floor === floor)
 			});
 		}
 
@@ -43,7 +37,7 @@
 
 <script lang="ts">
 	import type { Room } from '$lib/models/types';
-	import { format } from 'date-fns';
+	import { format, parse } from 'date-fns';
 
 	export let floors: {
 		floor: string;
@@ -52,10 +46,16 @@
 	export let building: string;
 
 	let today = new Date();
-	today.setDate(today.getDate() + 1);
+	today.setHours(24, 0, 0, 0);
+	console.log(today);
 </script>
 
-<h1 class="text-center text-2xl m-3">{building.toUpperCase()}</h1>
+<div class="text-center">
+	<h1 class="text-2xl m-3">{building.toUpperCase()}</h1>
+	<p class="m-2">
+		<span class="bg-green-500 text-green-500 p-1">.</span> = free all day
+	</p>
+</div>
 
 <div class="floorplans max-w-full p-2">
 	{#each floors as floor}
@@ -69,38 +69,46 @@
 					)}_${building}_${floor.floor}.webp`}
 					alt="None"
 				/>
-				{#each floor.rooms as room}
-					<!-- <img
-						class="absolute overlay top-0 left-0 w-full h-full"
-						src={`/room_masks/${room.region.charAt(0)}_${room.area.charAt(0)}_${building}_${
-							floor.floor
-						}_${room.room_number}_mask.svg`}
-						alt={room.room_number}
-					/> -->
-					{#if room.mask}
-						<svg
-							baseProfile="tiny"
-							height={room.mask.height}
-							version="1.2"
-							width={room.mask.width}
-							xmlns="http://www.w3.org/2000/svg"
-							xmlns:xlink="http://www.w3.org/1999/xlink"
-						>
-							<defs />
-							<g id="polygon">
-								<polygon fill="green" points={room.mask.points} />
+				{#if floor.rooms}
+					<svg
+						class="absolute top-0 left-0 w-full h-full"
+						viewBox="0 0 {floor.rooms[0].width} {floor.rooms[0].height}"
+						height="100%"
+						version="1.2"
+						width="100%"
+						xmlns="http://www.w3.org/2000/svg"
+						xmlns:xlink="http://www.w3.org/1999/xlink"
+					>
+						<defs />
+						{#each floor.rooms as room}
+							<g>
+								<polygon
+									id={room.name}
+									class:fill-green-500={room.next_booking
+										? new Date(room.next_booking.toString()) > today
+										: true}
+									on:click={(e) =>
+										alert(
+											room.next_booking
+												? 'Next Booking: ' +
+														format(Date.parse(room.next_booking.toString()), 'HH:mm eee dd/LL')
+												: 'No Bookings'
+										)}
+									class="opacity-70 hover:fill-sky-500 fill-[#273F76]"
+									points={room.points}
+								>
+									<title
+										>{room.name} | {room.next_booking
+											? 'Next Booking: ' +
+											  format(Date.parse(room.next_booking.toString()), 'HH:mm eee dd/LL')
+											: 'No Bookings'}</title
+									>
+								</polygon>
 							</g>
-						</svg>
-					{/if}
-				{/each}
+						{/each}
+					</svg>
+				{/if}
 			</div>
 		</div>
 	{/each}
 </div>
-
-<style>
-	/* .overlay {
-		filter: opacity(0.5) invert(58%) sepia(55%) saturate(5665%) hue-rotate(162deg) brightness(95%)
-			contrast(106%);
-	} */
-</style>
