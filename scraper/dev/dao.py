@@ -19,6 +19,18 @@ else:
     )
 
 
+def get_room_id_by_name(name):
+    with get_db_cursor() as cursor:
+        cursor.execute("""select id from rooms where name = %s""", [name])
+        return cursor.fetchone()
+
+
+def insert_map_data(width, height, points, room_id):
+    with get_db_cursor() as cursor:
+        cursor.execute("""insert into map_data (width, height, points, room_id) values (%s, %s, %s, %s)""",
+                       [width, height, points, room_id])
+
+
 def delete_all_past_bookings():
     with get_db_cursor() as cursor:
         cursor.execute("""delete from bookings where time < now()""")

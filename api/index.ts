@@ -1,7 +1,6 @@
 import express, { Application } from 'express';
 import cors from 'cors';
 import rooms_router from './routes/rooms';
-import plans_router from './routes/plans';
 import { errorHandler, logErrors } from './error/errors';
 
 const app: Application = express();
@@ -17,7 +16,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/v1/rooms', rooms_router);
-app.use('/api/v1/plans', plans_router);
 
 app.get('/api/healthcheck', (req, res) => {
   res.send('OK');

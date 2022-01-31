@@ -18,7 +18,9 @@
 		for (let floor of floors_list) {
 			floors.push({
 				floor: floor,
-				rooms: rooms.filter((room) => room.floor.toUpperCase() === floor.toUpperCase())
+				rooms: rooms
+					.filter((room) => room.floor.toUpperCase() === floor.toUpperCase())
+					.map((room) => (room.mask = {}))
 			});
 		}
 
@@ -41,36 +43,55 @@
 
 <script lang="ts">
 	import type { Room } from '$lib/models/types';
+	import { format } from 'date-fns';
 
 	export let floors: {
 		floor: string;
 		rooms: Room[];
 	}[];
 	export let building: string;
+
+	let today = new Date();
+	today.setDate(today.getDate() + 1);
 </script>
 
 <h1 class="text-center text-2xl m-3">{building.toUpperCase()}</h1>
 
-<div class="floorplans max-w-full">
+<div class="floorplans max-w-full p-2">
 	{#each floors as floor}
-		<div class="my-3 flex justify-center items-center">
-			<h2 class="m-3">{floor.floor}</h2>
-			<div class="relative">
+		<div class="my-2 flex justify-center items-center">
+			<h2 class="m-2">{floor.floor}</h2>
+			<div class="relative max-w-full">
 				<img
 					class=""
 					src={`/floorplans/${floor.rooms[0].region.charAt(0)}_${floor.rooms[0].area.charAt(
 						0
-					)}_${building}_${floor.floor}.png`}
+					)}_${building}_${floor.floor}.webp`}
 					alt="None"
 				/>
 				{#each floor.rooms as room}
-					<img
-						class="absolute overlay top-0 left-0"
+					<!-- <img
+						class="absolute overlay top-0 left-0 w-full h-full"
 						src={`/room_masks/${room.region.charAt(0)}_${room.area.charAt(0)}_${building}_${
 							floor.floor
-						}_${room.room_number}_mask.png`}
+						}_${room.room_number}_mask.svg`}
 						alt={room.room_number}
-					/>
+					/> -->
+					{#if room.mask}
+						<svg
+							baseProfile="tiny"
+							height={room.mask.height}
+							version="1.2"
+							width={room.mask.width}
+							xmlns="http://www.w3.org/2000/svg"
+							xmlns:xlink="http://www.w3.org/1999/xlink"
+						>
+							<defs />
+							<g id="polygon">
+								<polygon fill="green" points={room.mask.points} />
+							</g>
+						</svg>
+					{/if}
 				{/each}
 			</div>
 		</div>
@@ -78,9 +99,8 @@
 </div>
 
 <style>
-	.overlay {
-		transform-origin: center;
+	/* .overlay {
 		filter: opacity(0.5) invert(58%) sepia(55%) saturate(5665%) hue-rotate(162deg) brightness(95%)
 			contrast(106%);
-	}
+	} */
 </style>
