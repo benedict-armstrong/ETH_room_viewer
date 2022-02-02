@@ -1,3 +1,13 @@
+CREATE TABLE IF NOT EXISTS map_data (
+    id SERIAL,
+    points VARCHAR(10000),
+    height VARCHAR(10),
+    width VARCHAR(10),
+    room_id INTEGER NOT NULL,
+    CONSTRAINT fk_room FOREIGN KEY(room_id) REFERENCES rooms(id),
+    PRIMARY KEY(id)
+);
+
 CREATE TABLE IF NOT EXISTS rooms (
     id SERIAL,
     name VARCHAR(255) NOT NULL,

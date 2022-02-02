@@ -1,4 +1,3 @@
-from typing import Tuple
 from db import get_db_cursor
 import db
 from datetime import datetime, timedelta
@@ -13,11 +12,23 @@ if 'PGHOST' in os.environ:
     )
 else:
     db.connect(
-        server="localhost",
+        server="ben-docker-1",
         database="eth_rooms",
         user="postgres",
         password="postgres"
     )
+
+
+def get_room_id_by_name(name):
+    with get_db_cursor() as cursor:
+        cursor.execute("""select id from rooms where name = %s""", [name])
+        return cursor.fetchone()
+
+
+def insert_map_data(width, height, points, room_id):
+    with get_db_cursor() as cursor:
+        cursor.execute("""insert into map_data (width, height, points, room_id) values (%s, %s, %s, %s)""",
+                       [width, height, points, room_id])
 
 
 def delete_all_past_bookings():
@@ -60,6 +71,13 @@ def delete_all_room():
 def get_all_rooms():
     with get_db_cursor() as cursor:
         cursor.execute("""select * from rooms""")
+        return cursor.fetchall()
+
+
+def get_all_rooms_in_building(building_name):
+    with get_db_cursor() as cursor:
+        cursor.execute(
+            """select * from rooms where building = %s""", [building_name])
         return cursor.fetchall()
 
 

@@ -12,6 +12,9 @@ export type Room = {
 	url: string | undefined;
 	latitude: number | undefined;
 	longitude: number | undefined;
+	points?: string;
+	height?: number;
+	width?: number;
 };
 
 export interface Building {
