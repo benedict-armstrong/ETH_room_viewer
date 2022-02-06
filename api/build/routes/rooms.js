@@ -28,6 +28,11 @@ router.get('/map-data/:building', (req, res, next) => __awaiter(void 0, void 0, 
     try {
         const rows = (yield (0, dao_1.getMapDataByBuilding)(req.params.building.toUpperCase()))
             .rows;
+        if (rows.length === 0) {
+            return res.status(404).json({
+                error: 'Building not found or no map data available',
+            });
+        }
         return res.json(rows);
     }
     catch (err) {
@@ -39,6 +44,22 @@ router.get('/lernphase', (req, res, next) => __awaiter(void 0, void 0, void 0, f
     try {
         const rows = (yield (0, dao_1.getAllRoomsStudyTime)()).rows;
         return res.json(rows);
+    }
+    catch (err) {
+        console.error(err);
+        next();
+    }
+}));
+router.get('/:room_id', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const room_id = parseInt(req.params.room_id);
+        const rows = (yield (0, dao_1.getRoomById)(room_id)).rows;
+        if (rows.length === 0) {
+            return res.status(404).json({
+                error: 'Room not found',
+            });
+        }
+        return res.json(rows[0]);
     }
     catch (err) {
         console.error(err);

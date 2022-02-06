@@ -23,9 +23,7 @@ export const pwaTrackingListeners = () => {
 	//Track from where your web app has been opened/browsed
 	window.addEventListener('load', () => {
 		let trackText;
-		if (navigator && navigator.standalone) {
-			trackText = 'Launched: Installed (iOS)';
-		} else if (matchMedia('(display-mode: standalone)').matches) {
+		if (matchMedia('(display-mode: standalone)').matches) {
 			trackText = 'Launched: Installed';
 		} else {
 			trackText = 'Launched: Browser Tab';

@@ -1,14 +1,15 @@
 <script lang="ts">
 	import RoomListItem from './room-list-item.svelte';
 	import type { Building } from '../models/types';
+	import { goto } from '$app/navigation';
 
 	export let building: Building;
 	export let showFreeUntil = true;
 </script>
 
-<div class="p-2 border-2 border-gray-200">
+<div class="border-2 border-gray-200 p-2">
 	{#if building}
-		<div class="flex justify-between">
+		<div class="flex justify-between" on:click={() => goto(`/map-view/${building.name}`)}>
 			<h2 class="text-lg">{building.name}</h2>
 			<a href={`/map-view/${building.name}`}>
 				<svg
@@ -27,7 +28,7 @@
 			>
 		</div>
 		<div class="m-1">
-			<div class="text-sm mx-2 text-gray-300 flex justify-between">
+			<div class="mx-2 flex justify-between text-sm text-gray-300">
 				<p><strong>Name</strong> | Type | Capacity</p>
 				{#if showFreeUntil}
 					<p>Free until</p>

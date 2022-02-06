@@ -6,7 +6,7 @@
 </script>
 
 {#if areas.length == 0}
-	<div class="text-center m-8">
+	<div class="m-8 text-center">
 		<p>No Rooms found</p>
 	</div>
 {:else}

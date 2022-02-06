@@ -1,5 +1,6 @@
-import { parseJSON } from 'date-fns';
 import type { Area, Building, Room } from '$lib/models/types';
+import { formatDate } from './formatDate';
+import { generateUrl } from './generateUrl';
 
 export function groupIntoBuildings(rooms: Array<Room>): Building[] {
 	const buildings = groupHelper(rooms);
@@ -25,17 +26,8 @@ function groupHelper(rooms: Array<Room>): Array<Building> {
 	const buildings: Building[] = [];
 
 	for (const room of rooms) {
-		if (typeof room.next_booking === 'string' && room.next_booking != 'null') {
-			// String to date
-			room.next_booking = parseJSON(room.next_booking);
-			// Subtract one hour from next_booking to adjust for timezone
-			room.next_booking.setHours(room.next_booking.getHours() - 1);
-		}
-		room.url = `http://www.rauminfo.ethz.ch/RauminfoPre.do?region=${room.region.charAt(
-			0
-		)}&areal=${room.area.charAt(0)}&gebaeude=${room.building}&geschoss=${room.floor}&raumNr=${
-			room.room_number
-		}`;
+		room.next_booking = formatDate(room.next_booking);
+		room.url = generateUrl(room);
 
 		const b = buildings.find((b) => b.name === room.building);
 		if (b) {

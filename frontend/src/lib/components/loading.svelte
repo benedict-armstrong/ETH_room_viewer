@@ -6,9 +6,9 @@
 	}, 5000);
 </script>
 
-<div class="text-center m-8">
+<div class="m-8 text-center">
 	<svg
-		class="w-16 h-16 -mt-1 inline mx-auto stroke-[#273F76]"
+		class="mx-auto -mt-1 inline h-16 w-16 stroke-[#273F76]"
 		width="100%"
 		height="100%"
 		viewBox="0 0 1000 1000"

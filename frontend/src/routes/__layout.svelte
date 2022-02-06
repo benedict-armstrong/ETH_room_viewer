@@ -5,8 +5,8 @@
 
 <Nav />
 
-<div class="bg-white w-full h-full min-h-screen">
-	<div class="pt-16 max-w-4xl mx-auto bg-white">
+<div class="h-full min-h-screen w-full bg-white">
+	<div class="mx-auto max-w-4xl bg-white pt-16">
 		<slot />
 	</div>
 </div>

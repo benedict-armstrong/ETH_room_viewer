@@ -29,6 +29,7 @@
 	import Loading from '$lib/components/loading.svelte';
 	import { search } from '$lib/stores/search';
 	import { onDestroy } from 'svelte';
+	import Search from '$lib/components/search.svelte';
 
 	export let rooms;
 	export let filtered;
@@ -49,7 +50,15 @@
 	onDestroy(() => unsubscribe);
 </script>
 
-<h1 class="text-lg text-center m-4">Available during Lernphase for studying (8-21h):</h1>
+<div class="sticky top-[60px]">
+	<Search />
+</div>
+
+<h1 class="m-4 text-center text-lg">Available during Lernphase for studying (8-21h):</h1>
+<p>
+	These rooms are reserved for studying during Lernphase, and are usually open from 8-21 but
+	sometimes even until 22h (especially at Hönggerberg). The rooms shown here are open at the moment.
+</p>
 
 {#if !filtered}
 	<Loading />

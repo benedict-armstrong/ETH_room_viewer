@@ -6,11 +6,11 @@
 	onMount(() => (ready = true));
 </script>
 
-<nav class="flex justify-center w-full p-3 shadow-lg fixed bg-[#273F76] z-20">
-	<span class="px-3 border-r border-white">
-		<a href="/">
+<nav class="fixed z-20 flex w-full justify-center bg-[#273F76] p-3 shadow-lg">
+	<span class="border-r border-white px-3">
+		<a href="/rooms">
 			<svg
-				class="w-8 h-8 -mt-1 inline mx-auto stroke-white"
+				class="mx-auto -mt-1 inline h-8 w-8 stroke-white"
 				width="100%"
 				height="100%"
 				viewBox="0 0 1000 1000"

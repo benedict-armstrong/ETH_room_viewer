@@ -6,13 +6,15 @@
 	export let showFreeUntil = true;
 
 	export function click() {
-		location.href = room.url ? room.url : '/';
+		const getUrl = window.location;
+		const url = getUrl.protocol + '//' + getUrl.host + `/rooms/${room.id}`;
+		location.href = url;
 	}
 </script>
 
 <div
 	on:click={click}
-	class="p-2 sm:hover:bg-gray-100 border-b-2 border-gray-200 last:border-b-0 flex justify-between"
+	class="flex justify-between border-b-2 border-gray-200 p-2 last:border-b-0 sm:hover:bg-gray-100"
 >
 	<p>
 		<strong>{room.name}</strong>
@@ -22,10 +24,9 @@
 	{#if showFreeUntil}
 		<p>
 			{#if room.next_booking}
-				{format(room.next_booking, 'HH:mm')}
-				{format(room.next_booking, 'eee dd/LL')}
+				{format(room.next_booking, 'HH:mm eee dd/LL')}
 			{:else}
-				<span class="text-gray-200 text-sm">no bookings today</span>
+				<span class="text-gray-200 text-sm">no bookings</span>
 			{/if}
 		</p>
 	{/if}

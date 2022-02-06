@@ -11,7 +11,6 @@ const config = {
 		adapter: adapter(),
 
 		// hydrate the <div id="svelte"> element in src/app.html
-		target: '#svelte',
 		files: {
 			lib: 'src/lib',
 			hooks: 'src/hooks/index.ts'

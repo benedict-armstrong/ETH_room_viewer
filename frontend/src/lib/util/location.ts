@@ -1,5 +1,3 @@
-import { updateURLParameter } from '$lib/util/urlParams';
-
 export function getLocation(): void {
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(
@@ -9,8 +7,6 @@ export function getLocation(): void {
 					lng: position.coords.longitude
 				};
 
-				updateURLParameter('lat', pos.lat);
-				updateURLParameter('lng', pos.lng);
 				console.log('point :' + pos.lat + ',' + pos.lng);
 			},
 			function (error) {

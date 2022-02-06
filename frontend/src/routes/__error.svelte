@@ -15,7 +15,7 @@
 	<title>{status}</title>
 </svelte:head>
 
-<div class="text-center max-w-4xl">
+<div class="max-w-4xl text-center">
 	<h1>{status}</h1>
 
 	<p>{error.message}</p>
