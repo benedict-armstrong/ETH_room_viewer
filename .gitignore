@@ -5,3 +5,4 @@ scraper/dev/include
 database/data
 eth_rooms_logo.afdesign
 docker-compose.yml
+build/

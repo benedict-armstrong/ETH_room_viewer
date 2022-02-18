@@ -58,7 +58,7 @@ export async function getRoomById(room_id: number): Promise<any> {
           SELECT * FROM bookings WHERE time > date_trunc('hour', now() + interval '1 hour')
           ) AS v GROUP BY room_id
         ) AS r ON rooms.id = r.room_id WHERE room_data
-      ) AS next_bookings ON rooms.id = next_bookings.room_id JOIN (
+      ) AS next_bookings ON rooms.id = next_bookings.room_id LEFT JOIN (
         SELECT name as booking_name, room_id, time from bookings
       ) bookings ON rooms.id = bookings.room_id AND bookings.time = next_bookings.next_booking
     ) rooms on map_data.room_id = rooms.id where rooms.id = $1`,
