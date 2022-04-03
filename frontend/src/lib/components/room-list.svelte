@@ -31,7 +31,7 @@
 			<div class="mx-2 flex justify-between text-sm text-gray-300">
 				<p><strong>Name</strong> | Type | Capacity</p>
 				{#if showFreeUntil}
-					<p>Free until</p>
+					<p>Free until/for</p>
 				{/if}
 			</div>
 			{#each building.rooms as room}

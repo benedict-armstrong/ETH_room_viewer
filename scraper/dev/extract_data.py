@@ -69,6 +69,10 @@ def extractData(html: str, date: date, room_id: int):
             insert_col(df[day].dropna(), datetime.datetime.strptime(
                 day, '%d.%m.%Y'), room_id)
     except Exception as e:
+        cc = requests.get(
+            'https://control-center.armstrongconsulting.com/api/agent/ETH_ROOMS_TOOL/9370db48-5b7b-4cb1-970a-f570c27a08e2/fail')
+        if (cc.status_code != 200):
+            print("Error reporting to Control Center: {}".format(cc.status_code))
         print("Error {} for: {}, {}".format(e, date, room_id))
         print('\n')
 

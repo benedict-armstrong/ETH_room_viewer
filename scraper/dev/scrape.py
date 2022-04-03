@@ -71,8 +71,16 @@ try:
         extract_data_day(monday, r1, rooms)
     update_rooms_where_data_available()
 except Exception as e:
+    cc = requests.get(
+        'https://control-center.armstrongconsulting.com/api/agent/ETH_ROOMS_TOOL/9370db48-5b7b-4cb1-970a-f570c27a08e2/fail')
+    if (cc.status_code != 200):
+        print("Error reporting to Control Center: {}".format(cc.status_code))
     print("Error: {} | {}s".format(e, (time.time() - start_time)))
 else:
+    cc = requests.get(
+        'https://control-center.armstrongconsulting.com/api/agent/ETH_ROOMS_TOOL/9370db48-5b7b-4cb1-970a-f570c27a08e2/ok')
+    if (cc.status_code != 200):
+        print("Error reporting to Control Center: {}".format(cc.status_code))
     print("Done {} in {}s".format(datetime.datetime.now().strftime(
         "%d.%m.%Y %H:%M:%S"), (time.time() - start_time)))
 

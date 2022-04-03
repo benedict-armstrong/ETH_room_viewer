@@ -22,4 +22,5 @@ for room in rooms:
         else:
             print("Error: {}".format(r.status_code))
             print(url)
+    # to avoid request limit in rauminfo website
     sleep(0.3)

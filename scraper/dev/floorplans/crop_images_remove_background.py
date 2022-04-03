@@ -110,3 +110,6 @@ for filename in os.listdir('./images/raw'):
             # # Save mask for room
             # mask.save('./images/room_masks/' +
             #           filename + "_mask.svg", 'SVG')
+
+
+# Delete all files in folder /images/floorplans where no floorplan available
