@@ -5,7 +5,7 @@ export function formatDate(date: Date | string | undefined): Date | undefined {
 		// String to date
 		date = parseJSON(date);
 		// Subtract one hour from next_booking to adjust for timezone
-		date.setHours(date.getHours() - 1);
+		date.setHours(date.getHours() - 2);
 
 		return date;
 	}

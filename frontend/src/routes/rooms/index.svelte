@@ -31,6 +31,7 @@
 	import { onDestroy, onMount } from 'svelte';
 	import { pwaTrackingListeners } from '$lib/util/pwaListener';
 	import Search from '$lib/components/search.svelte';
+	import ToggleButton from '$lib/components/toggle-button.svelte';
 
 	export let rooms;
 	export let filtered;
@@ -101,9 +102,12 @@
 		</svg>
 	</span>
 	icon to view a map of the free Rooms.<br />
-	During lernphase you can find rooms for studying
-	<a sveltekit:prefetch class="text-sky-700 underline" href="/rooms/lernphase">here</a>.
+	<!-- During lernphase you can find rooms for studying
+	<a sveltekit:prefetch class="text-sky-700 underline" href="/rooms/lernphase">here</a>. -->
 </p>
+<div class="mb-12 flex w-full items-center justify-center">
+	<!-- <ToggleButton label="Hour Mode" /> -->
+</div>
 {#if !filtered}
 	<Loading />
 {:else}

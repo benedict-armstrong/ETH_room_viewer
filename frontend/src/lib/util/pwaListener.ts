@@ -3,10 +3,10 @@ const fireTracking = (label) => {
 	console.log(label);
 };
 
-export const pwaTrackingListeners = () => {
+export const pwaTrackingListeners = (): void => {
 	const fireAddToHomeScreenImpression = (event) => {
-		fireTracking('Add to homescreen shown');
-		//will not work for chrome, untill fixed
+		fireTracking('Add to home screen shown');
+		//will not work for chrome, until fixed
 		event.userChoice.then((choiceResult) => {
 			fireTracking(`User clicked ${choiceResult}`);
 		});
@@ -16,7 +16,8 @@ export const pwaTrackingListeners = () => {
 	window.addEventListener('beforeinstallprompt', fireAddToHomeScreenImpression);
 
 	//Track web app install by user
-	window.addEventListener('appinstalled', (event) => {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	window.addEventListener('appinstalled', (_e) => {
 		fireTracking('PWA app installed by user!!! Hurray');
 	});
 
