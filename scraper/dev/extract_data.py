@@ -1,6 +1,7 @@
 from datetime import date
 import datetime
 import sys
+import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 from dao import insert_bookings_list
