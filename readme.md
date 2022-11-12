@@ -19,13 +19,13 @@ If you have any suggestions for improvements or questions send me an email. Feel
 
 ---
 
-start frontend locally:
+### Start frontend locally:
 
 ```{bash}
 cd frontend; npm run dev
 ```
 
-start backend locally:
+### Start backend locally:
 
 ```{bash}
 cd api; npm run dev

@@ -1,0 +1,2143 @@
+<!-- ?xml version="1.0" encoding="UTF-8"? -->
+<!-- DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd" -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>ETH Z&uuml;rich - Rauminfo: Raumbelegungen</title>
+
+	<meta name="copyright" content="ETH Zuerich" />
+	<meta name="author" content="ETH Web Office" />
+	<meta name="version" content="Web CD 1.0.2" />
+	<link rev="made" href="mailto:weboffice@cc.ethz.ch" />
+
+	
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+
+
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="language" content="de" />
+	<meta name="description" lang="de" content="Informationen zu den Belegungen eines Unterrichtsraums der ETH Zürich" />
+	<meta name="Keywords" content="ETH Z&uuml;rich, R&auml;ume, Raum, Rauminfo, Rauminfo, Homepage" />
+	<meta name="robots" content="nofollow" />
+	
+	<link rel="home" href="http://www.ethz.ch/" />
+	<base target="_top" />
+
+
+	<link rel="stylesheet" href="css/colors_c070.css" type="text/css" />
+	<link rel="stylesheet" href="css/ns4.css" type="text/css" />
+        
+
+	<style type="text/css">
+		.logo-bg { background-image: url(images/head_bg_logo_home_c070.jpg); background-repeat: no-repeat; }
+		.identity-image { background-image: url(images/head_bg_home_c070.jpg); background-repeat: repeat; }
+		.mainnav, .screenhead, .color5-back, .color4-back, .color3-back, .color2-back, .color1-back, .servicenav, .transparent
+		{ background-image: url(images/transparent.gif); }
+	</style> 
+    
+
+	<style type="text/css">
+	<!-- 
+		@import url(css/modernbrowsers.css);
+		@import url(css/silva.css);
+		@import url(css/colors_c070.css); 
+		@import url(css/customstyles.css); 
+		@media print {
+           .dontprint{ display:none; }
+        }
+		.style1 {color: #FF0000}
+	-->
+	</style>
+
+
+	<link rel="stylesheet" media="print" href="css/print2s.css" type="text/css" />
+	<link rel="stylesheet" media="print" href="css/customstyles_print.css" type="text/css" />
+
+	<link rel="SHORTCUT ICON" href="images/favicon/kuppel_icon_c070.gif" />
+
+<script language="JavaScript">
+<!--
+
+// Die Seite auf sich selbst in einem kleineren Browserfenster umleiten.
+function init() {
+	var url = document.URL;
+	var flag = "sized=true";
+	if (url.indexOf(flag) < 0) {
+		if (url.indexOf("?") < 0)
+			show(url + "?" + flag);
+		else
+			show(url + "&" + flag);
+		window.close();
+	}
+}
+
+// URL im eigenen Browserfenster anzeigen.
+function show(url) { //v2.0
+	
+		fenster = window.open("","","menubar=no,toolbar=no,location=no,status=no,scrollbars=yes,resizable=yes");
+			
+	fenster.location.href = url;
+	fenster.focus();
+}
+
+function dae(e, waitName){
+	try {
+		document.getElementById(waitName).style.display="inline";
+		e.style.display="none";
+		<!-- e.disabled = true; -->
+	} catch (ex){}
+	return true;
+}
+//-->
+</script>
+
+<!-- AJ. 31.10.2016 -->
+	<script type="text/javascript" src="scripts/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="scripts/jquery-ui.js"></script>
+
+	<!-- Add fancyBox main JS and CSS files -->
+	<script type="text/javascript" src="scripts/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+	<link rel="stylesheet" type="text/css" href="scripts/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+	
+	
+	
+	
+	<style type="text/css">
+		.fancybox-custom .fancybox-skin {
+			box-shadow: 0 0 50px #222;
+		}
+	</style>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.fancyLageplan').attr('rel', 'gallery').fancybox({
+				type: 'iframe',
+				autoSize: true,
+				height: '98%',
+				width: '620'
+			});
+			
+			$('.fancyGrundriss').fancybox({
+				autoSize: true,
+				height: '98%',
+				width: '95%',
+				minWidth: '620'
+			});
+			
+
+			// Inline Image 
+			$('#inlinePict').hide();
+			$("#inline").fancybox({
+				type: 'inline',
+				fitToView	: false,
+				autoSize	: false,
+				height		: '98%',
+				width		: '95%',
+				afterShow: function(){
+				    var win=null;
+				    var content = $('.fancybox-inner');
+				    $('.fancybox-wrap')
+				    // append print button
+				    .append('<ul class="inlineNavi"><li class="max active">Max.</li><li class="height">H&ouml;he</li><li class="width">Breite</li><li class="print">Print</li></ul>')
+				    // use .on() in its delegated form to bind a click to the print button event for future elements
+				    .on('click','.inlineNavi li', function() {
+						var ID = $(this).attr('class');
+						$('.inlineNavi li').removeClass('active');
+						$(this).addClass('active');
+						$('#grundriss').removeClass();
+						$('#grundriss').addClass(ID);
+					})
+				    // use .on() in its delegated form to bind a click to the print button event for future elements
+				    .on('click', '.inlineNavi li.print', function(){
+				      window.print();
+				    }); // on¨$
+				}
+			});
+			
+			
+			$('.fancyForm').submit(function() {
+   	            var url = $(this).attr("action") + "?" + $(this).serialize();
+   	            $.fancybox({
+   	                href: url,
+   	                type: 'iframe',
+					autoSize: true,
+					height: '98%',
+					width: '95%',
+   	             	preload: true	
+   	            });
+   	            return false;
+   	        });
+			
+			
+			/*
+			$('.jqzoom').jqzoom({
+	            zoomType: 'drag',
+	            lens:true,
+	            preloadImages: false
+	        });
+			
+			//$("#draggable").draggable();
+			
+			
+           	$.fancybox({
+           		scrolling: 'no',
+           		content: '<a id="zoom" href="small-img.png">'
+           				+'<img class="zoom-img" src="big-img.png"></img>'
+           				+'</a>',
+           		onComplete: function() {
+           				$('#zoom').jqzoom({
+           					zoomType: 'innerzoom',
+           					title: false,
+           					lens: false,
+           					showEffect: 'fadein',
+           					hideEffect: 'fadeout'
+           				})
+           		}
+           	});
+			*/
+			
+		});
+	</script>
+	
+
+</head>
+<body onLoad="">
+
+	<table width="95%" align="center" border="0" cellpadding="0" cellspacing="10">
+		<tr valign="bottom">
+		
+			<td align="left" nowrap width="5%">
+				
+					<h2>
+						<span id="waitingL" style="display: none;"><img height="16" src="images/waitBig.gif" width="16" /></span>
+						<!--  onClick="dae(this, 'waitingL');" -->
+						<span class="dontprint"><a href="Belegungen.do?woche=ruckwaerts&sized=true" class="fancyForm" target="_self">&laquo;&laquo;</a></span>
+					</h2>
+					
+			</td>
+			<td width="90%">
+				<h2 align="center">
+					Belegungen&nbsp;des&nbsp;Raumes&nbsp;CAB G 11	f&uuml;r&nbsp;die&nbsp;Woche	24.10.2022&nbsp;bis&nbsp;30.10.2022
+				</h2>
+			</td>
+			
+			<td align="right" nowrap width="5%">
+				
+					<h2>
+						<span id="waitingR" style="display: none;"><img height="16" src="images/waitBig.gif" width="16" /></span>
+						<!--  onClick="dae(this, 'waitingR');" -->
+						<span class="dontprint"><a href="Belegungen.do?woche=vorwaerts&sized=true" class="fancyForm" target="_self">&raquo;&raquo;</a></span>
+					</h2>
+					
+			</td>
+			
+		</tr>
+	</table>
+	<table width="95%" align="center" border="1" cellpadding="1" cellspacing="0">
+				<!-- START Header-Reihe -->	<tr>		
+							<!-- START Header-Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" width="4%" height="30" align="center" valign="middle" rowSpan="1">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	&nbsp;		</td>	<!-- ENDE Header-Reihe, Header-Spalte -->						
+							<!-- START Header-Reihe, Spacer-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" width="0%" align="center" valign="middle" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE Header-Reihe, Spacer-Spalte -->
+											
+							<!-- START Header-Reihe, mormale Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" width="16%" align="center" valign="middle" rowSpan="1">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>Montag <br />24.10</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE Header-Reihe, normale Spalte -->					
+							<!-- START Header-Reihe, mormale Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" width="16%" align="center" valign="middle" rowSpan="1">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>Dienstag <br />25.10</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE Header-Reihe, normale Spalte -->					
+							<!-- START Header-Reihe, mormale Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" width="16%" align="center" valign="middle" rowSpan="1">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>Mittwoch <br />26.10</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE Header-Reihe, normale Spalte -->					
+							<!-- START Header-Reihe, mormale Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" width="16%" align="center" valign="middle" rowSpan="1">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>Donnerstag <br />27.10</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE Header-Reihe, normale Spalte -->					
+							<!-- START Header-Reihe, mormale Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" width="16%" align="center" valign="middle" rowSpan="1">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>Freitag <br />28.10</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE Header-Reihe, normale Spalte -->					
+							<!-- START Header-Reihe, mormale Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" width="16%" align="center" valign="middle" rowSpan="1">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>Samstag <br />29.10</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE Header-Reihe, normale Spalte -->			</tr>	<!-- ENDE Header-Reihe -->						<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>7-8</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 		 <!-- geschlossen -->  
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#cccccc" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 		 <!-- geschlossen -->  
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#cccccc" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 		 <!-- geschlossen -->  
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#cccccc" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 		 <!-- geschlossen -->  
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#cccccc" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 		 <!-- geschlossen -->  
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#cccccc" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 		 <!-- geschlossen -->  
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#cccccc" rowSpan="60"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>8-9</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=5_3_0" target="_blank">
+                                        	<font color="#ffffff">Rehabilitation Engineering II: Rehabilitation of Sensory and Vegetative Functions</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="4">
+										
+                                        
+										<a href="Belegungen.do?details=5_4_0" target="_blank">
+                                        	<font color="#ffffff">Information Security Lab</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=5_5_0" target="_blank">
+                                        	<font color="#ffffff">Dietary Etiologies of Chronic Disease</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=5_6_0" target="_blank">
+                                        	<font color="#ffffff">High-Frequency Design Techniques</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>9-10</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="4">
+										
+                                        
+										<a href="Belegungen.do?details=9_4_0" target="_blank">
+                                        	<font color="#ffffff">Uebungen zu Weltpolitik seit 1945: Geschichte der internationalen Beziehungen</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>10-11</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="12">
+										
+                                        
+										<a href="Belegungen.do?details=13_2_0" target="_blank">
+                                        	<font color="#ffffff">Mixed Reality</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="4">
+										
+                                        
+										<a href="Belegungen.do?details=13_3_0" target="_blank">
+                                        	<font color="#ffffff">Thermodynamics III</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=13_4_0" target="_blank">
+                                        	<font color="#ffffff">Weltpolitik seit 1945: Geschichte der internationalen Beziehungen</font> </a>				<br /><br />	
+                                        
+										<a href="Belegungen.do?details=13_4_1" target="_blank">
+                                        	<font color="#ffffff">Weltpolitik seit 1945: Geschichte der internationalen Beziehungen</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=13_5_0" target="_blank">
+                                        	<font color="#ffffff">Lebensmittelchemie II</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=13_6_0" target="_blank">
+                                        	<font color="#ffffff">Rehabilitation and Inclusion</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>11-12</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="4">
+										
+                                        
+										<a href="Belegungen.do?details=17_3_0" target="_blank">
+                                        	<font color="#ffffff">Fluiddynamik II</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>12-13</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="4">
+										
+                                        
+										<a href="Belegungen.do?details=21_4_0" target="_blank">
+                                        	<font color="#ffffff">Randomized Algorithms and Probabilistic Methods</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>13-14</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="12">
+										
+                                        
+										<a href="Belegungen.do?details=25_2_0" target="_blank">
+                                        	<font color="#ffffff">Design of Parallel and High-Performance Computing</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="12">
+										
+                                        
+										<a href="Belegungen.do?details=25_4_0" target="_blank">
+                                        	<font color="#ffffff">Basics of Air Transport (Aviation I)</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>14-15</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=29_3_0" target="_blank">
+                                        	<font color="#ffffff">Using R for Data Analysis and Graphics (Part I)</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=29_5_0" target="_blank">
+                                        	<font color="#ffffff">Production and Operations Management</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>15-16</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>16-17</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=37_2_0" target="_blank">
+                                        	<font color="#ffffff">Colloquium Atmosphere and Climate</font> </a>				<br /><br />	
+                                        
+										<a href="Belegungen.do?details=37_2_1" target="_blank">
+                                        	<font color="#ffffff">Colloquium Atmosphere and Climate</font> </a>				<br /><br />	
+                                        
+										<a href="Belegungen.do?details=37_2_2" target="_blank">
+                                        	<font color="#ffffff">Colloquium Atmosphere and Climate</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=37_3_0" target="_blank">
+                                        	<font color="#ffffff">Kryosph&auml;re</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=37_4_0" target="_blank">
+                                        	<font color="#ffffff">Algorithms Lab</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=37_5_0" target="_blank">
+                                        	<font color="#ffffff">System Security</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>17-18</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>18-19</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=45_4_0" target="_blank">
+                                        	<font color="#ffffff">Network Analysis</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>19-20</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>20-21</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 		 <!-- geschlossen -->  
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#cccccc" rowSpan="8"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 		 <!-- geschlossen -->  
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#cccccc" rowSpan="8"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 		 <!-- geschlossen -->  
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#cccccc" rowSpan="8"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 		 <!-- geschlossen -->  
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#cccccc" rowSpan="8"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 		 <!-- geschlossen -->  
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#cccccc" rowSpan="8"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>21-22</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->		
+	</table>
+    <br />
+    <div class="dontprint">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="95%">
+    	<tr>
+        	<td align="left" nowrap witdt="50%"><img src="images/raum-frei.gif" alt="frei"> = frei  &nbsp; &nbsp; <img src="images/raum-besetzt.gif" alt="belegt"> = belegt &nbsp; &nbsp; <img src="images/raum-geschlossen.gif" alt="geschlossen"> = geschlossen</td>
+            
+            <td width="50%" align="left" nowrap >
+            <form>
+				
+                <input type="button" name="button" value="drucken" onclick="window.print()" class="submit">
+			</form>
+            </td>
+      </tr>
+    </table>
+    </div>
+
+
+</body>
+</html>
+
+        0  ...               7
+0     NaN  ...  Samstag  29.10
+4     7-8  ...             NaN
+8     8-9  ...             NaN
+12   9-10  ...             NaN
+16  10-11  ...             NaN
+20  11-12  ...             NaN
+24  12-13  ...             NaN
+28  13-14  ...             NaN
+32  14-15  ...             NaN
+36  15-16  ...             NaN
+40  16-17  ...             NaN
+44  17-18  ...             NaN
+48  18-19  ...             NaN
+52  19-20  ...             NaN
+56  20-21  ...             NaN
+60  21-22  ...             NaN
+
+[16 rows x 7 columns]
+<!-- ?xml version="1.0" encoding="UTF-8"? -->
+<!-- DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd" -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>ETH Z&uuml;rich - Rauminfo: Raumbelegungen</title>
+
+	<meta name="copyright" content="ETH Zuerich" />
+	<meta name="author" content="ETH Web Office" />
+	<meta name="version" content="Web CD 1.0.2" />
+	<link rev="made" href="mailto:weboffice@cc.ethz.ch" />
+
+	
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+
+
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="language" content="de" />
+	<meta name="description" lang="de" content="Informationen zu den Belegungen eines Unterrichtsraums der ETH Zürich" />
+	<meta name="Keywords" content="ETH Z&uuml;rich, R&auml;ume, Raum, Rauminfo, Rauminfo, Homepage" />
+	<meta name="robots" content="nofollow" />
+	
+	<link rel="home" href="http://www.ethz.ch/" />
+	<base target="_top" />
+
+
+	<link rel="stylesheet" href="css/colors_c070.css" type="text/css" />
+	<link rel="stylesheet" href="css/ns4.css" type="text/css" />
+        
+
+	<style type="text/css">
+		.logo-bg { background-image: url(images/head_bg_logo_home_c070.jpg); background-repeat: no-repeat; }
+		.identity-image { background-image: url(images/head_bg_home_c070.jpg); background-repeat: repeat; }
+		.mainnav, .screenhead, .color5-back, .color4-back, .color3-back, .color2-back, .color1-back, .servicenav, .transparent
+		{ background-image: url(images/transparent.gif); }
+	</style> 
+    
+
+	<style type="text/css">
+	<!-- 
+		@import url(css/modernbrowsers.css);
+		@import url(css/silva.css);
+		@import url(css/colors_c070.css); 
+		@import url(css/customstyles.css); 
+		@media print {
+           .dontprint{ display:none; }
+        }
+		.style1 {color: #FF0000}
+	-->
+	</style>
+
+
+	<link rel="stylesheet" media="print" href="css/print2s.css" type="text/css" />
+	<link rel="stylesheet" media="print" href="css/customstyles_print.css" type="text/css" />
+
+	<link rel="SHORTCUT ICON" href="images/favicon/kuppel_icon_c070.gif" />
+
+<script language="JavaScript">
+<!--
+
+// Die Seite auf sich selbst in einem kleineren Browserfenster umleiten.
+function init() {
+	var url = document.URL;
+	var flag = "sized=true";
+	if (url.indexOf(flag) < 0) {
+		if (url.indexOf("?") < 0)
+			show(url + "?" + flag);
+		else
+			show(url + "&" + flag);
+		window.close();
+	}
+}
+
+// URL im eigenen Browserfenster anzeigen.
+function show(url) { //v2.0
+	
+		fenster = window.open("","","menubar=no,toolbar=no,location=no,status=no,scrollbars=yes,resizable=yes");
+			
+	fenster.location.href = url;
+	fenster.focus();
+}
+
+function dae(e, waitName){
+	try {
+		document.getElementById(waitName).style.display="inline";
+		e.style.display="none";
+		<!-- e.disabled = true; -->
+	} catch (ex){}
+	return true;
+}
+//-->
+</script>
+
+<!-- AJ. 31.10.2016 -->
+	<script type="text/javascript" src="scripts/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="scripts/jquery-ui.js"></script>
+
+	<!-- Add fancyBox main JS and CSS files -->
+	<script type="text/javascript" src="scripts/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+	<link rel="stylesheet" type="text/css" href="scripts/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+	
+	
+	
+	
+	<style type="text/css">
+		.fancybox-custom .fancybox-skin {
+			box-shadow: 0 0 50px #222;
+		}
+	</style>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.fancyLageplan').attr('rel', 'gallery').fancybox({
+				type: 'iframe',
+				autoSize: true,
+				height: '98%',
+				width: '620'
+			});
+			
+			$('.fancyGrundriss').fancybox({
+				autoSize: true,
+				height: '98%',
+				width: '95%',
+				minWidth: '620'
+			});
+			
+
+			// Inline Image 
+			$('#inlinePict').hide();
+			$("#inline").fancybox({
+				type: 'inline',
+				fitToView	: false,
+				autoSize	: false,
+				height		: '98%',
+				width		: '95%',
+				afterShow: function(){
+				    var win=null;
+				    var content = $('.fancybox-inner');
+				    $('.fancybox-wrap')
+				    // append print button
+				    .append('<ul class="inlineNavi"><li class="max active">Max.</li><li class="height">H&ouml;he</li><li class="width">Breite</li><li class="print">Print</li></ul>')
+				    // use .on() in its delegated form to bind a click to the print button event for future elements
+				    .on('click','.inlineNavi li', function() {
+						var ID = $(this).attr('class');
+						$('.inlineNavi li').removeClass('active');
+						$(this).addClass('active');
+						$('#grundriss').removeClass();
+						$('#grundriss').addClass(ID);
+					})
+				    // use .on() in its delegated form to bind a click to the print button event for future elements
+				    .on('click', '.inlineNavi li.print', function(){
+				      window.print();
+				    }); // on¨$
+				}
+			});
+			
+			
+			$('.fancyForm').submit(function() {
+   	            var url = $(this).attr("action") + "?" + $(this).serialize();
+   	            $.fancybox({
+   	                href: url,
+   	                type: 'iframe',
+					autoSize: true,
+					height: '98%',
+					width: '95%',
+   	             	preload: true	
+   	            });
+   	            return false;
+   	        });
+			
+			
+			/*
+			$('.jqzoom').jqzoom({
+	            zoomType: 'drag',
+	            lens:true,
+	            preloadImages: false
+	        });
+			
+			//$("#draggable").draggable();
+			
+			
+           	$.fancybox({
+           		scrolling: 'no',
+           		content: '<a id="zoom" href="small-img.png">'
+           				+'<img class="zoom-img" src="big-img.png"></img>'
+           				+'</a>',
+           		onComplete: function() {
+           				$('#zoom').jqzoom({
+           					zoomType: 'innerzoom',
+           					title: false,
+           					lens: false,
+           					showEffect: 'fadein',
+           					hideEffect: 'fadeout'
+           				})
+           		}
+           	});
+			*/
+			
+		});
+	</script>
+	
+
+</head>
+<body onLoad="">
+
+	<table width="95%" align="center" border="0" cellpadding="0" cellspacing="10">
+		<tr valign="bottom">
+		
+			<td align="left" nowrap width="5%">
+				
+					<h2>
+						<span id="waitingL" style="display: none;"><img height="16" src="images/waitBig.gif" width="16" /></span>
+						<!--  onClick="dae(this, 'waitingL');" -->
+						<span class="dontprint"><a href="Belegungen.do?woche=ruckwaerts&sized=true" class="fancyForm" target="_self">&laquo;&laquo;</a></span>
+					</h2>
+					
+			</td>
+			<td width="90%">
+				<h2 align="center">
+					Belegungen&nbsp;des&nbsp;Raumes&nbsp;CAB G 11	f&uuml;r&nbsp;die&nbsp;Woche	24.10.2022&nbsp;bis&nbsp;30.10.2022
+				</h2>
+			</td>
+			
+			<td align="right" nowrap width="5%">
+				
+					<h2>
+						<span id="waitingR" style="display: none;"><img height="16" src="images/waitBig.gif" width="16" /></span>
+						<!--  onClick="dae(this, 'waitingR');" -->
+						<span class="dontprint"><a href="Belegungen.do?woche=vorwaerts&sized=true" class="fancyForm" target="_self">&raquo;&raquo;</a></span>
+					</h2>
+					
+			</td>
+			
+		</tr>
+	</table>
+	<table width="95%" align="center" border="1" cellpadding="1" cellspacing="0">
+				<!-- START Header-Reihe -->	<tr>		
+							<!-- START Header-Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" width="4%" height="30" align="center" valign="middle" rowSpan="1">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	&nbsp;		</td>	<!-- ENDE Header-Reihe, Header-Spalte -->						
+							<!-- START Header-Reihe, Spacer-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" width="0%" align="center" valign="middle" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE Header-Reihe, Spacer-Spalte -->
+											
+							<!-- START Header-Reihe, mormale Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" width="16%" align="center" valign="middle" rowSpan="1">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>Montag <br />24.10</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE Header-Reihe, normale Spalte -->					
+							<!-- START Header-Reihe, mormale Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" width="16%" align="center" valign="middle" rowSpan="1">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>Dienstag <br />25.10</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE Header-Reihe, normale Spalte -->					
+							<!-- START Header-Reihe, mormale Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" width="16%" align="center" valign="middle" rowSpan="1">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>Mittwoch <br />26.10</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE Header-Reihe, normale Spalte -->					
+							<!-- START Header-Reihe, mormale Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" width="16%" align="center" valign="middle" rowSpan="1">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>Donnerstag <br />27.10</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE Header-Reihe, normale Spalte -->					
+							<!-- START Header-Reihe, mormale Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" width="16%" align="center" valign="middle" rowSpan="1">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>Freitag <br />28.10</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE Header-Reihe, normale Spalte -->					
+							<!-- START Header-Reihe, mormale Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" width="16%" align="center" valign="middle" rowSpan="1">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>Samstag <br />29.10</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE Header-Reihe, normale Spalte -->			</tr>	<!-- ENDE Header-Reihe -->						<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>7-8</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 		 <!-- geschlossen -->  
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#cccccc" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 		 <!-- geschlossen -->  
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#cccccc" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 		 <!-- geschlossen -->  
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#cccccc" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 		 <!-- geschlossen -->  
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#cccccc" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 		 <!-- geschlossen -->  
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#cccccc" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 		 <!-- geschlossen -->  
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#cccccc" rowSpan="60"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>8-9</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=5_3_0" target="_blank">
+                                        	<font color="#ffffff">Rehabilitation Engineering II: Rehabilitation of Sensory and Vegetative Functions</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="4">
+										
+                                        
+										<a href="Belegungen.do?details=5_4_0" target="_blank">
+                                        	<font color="#ffffff">Information Security Lab</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=5_5_0" target="_blank">
+                                        	<font color="#ffffff">Dietary Etiologies of Chronic Disease</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=5_6_0" target="_blank">
+                                        	<font color="#ffffff">High-Frequency Design Techniques</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>9-10</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="4">
+										
+                                        
+										<a href="Belegungen.do?details=9_4_0" target="_blank">
+                                        	<font color="#ffffff">Uebungen zu Weltpolitik seit 1945: Geschichte der internationalen Beziehungen</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>10-11</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="12">
+										
+                                        
+										<a href="Belegungen.do?details=13_2_0" target="_blank">
+                                        	<font color="#ffffff">Mixed Reality</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="4">
+										
+                                        
+										<a href="Belegungen.do?details=13_3_0" target="_blank">
+                                        	<font color="#ffffff">Thermodynamics III</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=13_4_0" target="_blank">
+                                        	<font color="#ffffff">Weltpolitik seit 1945: Geschichte der internationalen Beziehungen</font> </a>				<br /><br />	
+                                        
+										<a href="Belegungen.do?details=13_4_1" target="_blank">
+                                        	<font color="#ffffff">Weltpolitik seit 1945: Geschichte der internationalen Beziehungen</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=13_5_0" target="_blank">
+                                        	<font color="#ffffff">Lebensmittelchemie II</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=13_6_0" target="_blank">
+                                        	<font color="#ffffff">Rehabilitation and Inclusion</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>11-12</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="4">
+										
+                                        
+										<a href="Belegungen.do?details=17_3_0" target="_blank">
+                                        	<font color="#ffffff">Fluiddynamik II</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>12-13</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="4">
+										
+                                        
+										<a href="Belegungen.do?details=21_4_0" target="_blank">
+                                        	<font color="#ffffff">Randomized Algorithms and Probabilistic Methods</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>13-14</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="12">
+										
+                                        
+										<a href="Belegungen.do?details=25_2_0" target="_blank">
+                                        	<font color="#ffffff">Design of Parallel and High-Performance Computing</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="12">
+										
+                                        
+										<a href="Belegungen.do?details=25_4_0" target="_blank">
+                                        	<font color="#ffffff">Basics of Air Transport (Aviation I)</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>14-15</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=29_3_0" target="_blank">
+                                        	<font color="#ffffff">Using R for Data Analysis and Graphics (Part I)</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=29_5_0" target="_blank">
+                                        	<font color="#ffffff">Production and Operations Management</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>15-16</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>16-17</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=37_2_0" target="_blank">
+                                        	<font color="#ffffff">Colloquium Atmosphere and Climate</font> </a>				<br /><br />	
+                                        
+										<a href="Belegungen.do?details=37_2_1" target="_blank">
+                                        	<font color="#ffffff">Colloquium Atmosphere and Climate</font> </a>				<br /><br />	
+                                        
+										<a href="Belegungen.do?details=37_2_2" target="_blank">
+                                        	<font color="#ffffff">Colloquium Atmosphere and Climate</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=37_3_0" target="_blank">
+                                        	<font color="#ffffff">Kryosph&auml;re</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=37_4_0" target="_blank">
+                                        	<font color="#ffffff">Algorithms Lab</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=37_5_0" target="_blank">
+                                        	<font color="#ffffff">System Security</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>17-18</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>18-19</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- Nicht-Leere Zelle -->	<!-- Farbe bestimmen -->		<!-- Lehrveranstaltung -->	    		
+
+								<!-- Zelle anzeigen -->
+								<td align="center" valign="middle" bgcolor="#006799" rowSpan="8">
+										
+                                        
+										<a href="Belegungen.do?details=45_4_0" target="_blank">
+                                        	<font color="#ffffff">Network Analysis</font> </a>			</td>		<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>19-20</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 	 	 <!-- frei --> 
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#99cc99" rowSpan="4"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>20-21</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+														<!-- START normale Reihe, normale Spalte --> 		 <!-- geschlossen -->  
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#cccccc" rowSpan="8"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 		 <!-- geschlossen -->  
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#cccccc" rowSpan="8"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 		 <!-- geschlossen -->  
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#cccccc" rowSpan="8"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 		 <!-- geschlossen -->  
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#cccccc" rowSpan="8"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->								<!-- START normale Reihe, normale Spalte --> 		 <!-- geschlossen -->  
+                            
+								<!-- Leere Zelle -->
+								<td bgcolor="#cccccc" rowSpan="8"><img src="images/transparent.gif" width="1" height="5"></td>
+							
+                            
+							<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                            	<!-- ENDE normale Reihe, normale Spalte -->			</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>				
+							<!-- START normale Reihe, Header-Spalte -->
+                            <!-- AJ <TH> -->
+							<td bgcolor="eeeeee" nowrap align="center" valign="middle" rowSpan="4">
+								<!-- AJ: eeutil:nichtLeer name="zelle" property="text" -->
+                                	<b>21-22</b>	
+								<!-- AJ: eeutil:leer name="zelle" property="text" -->
+                                	</td>	<!-- ENDE normale Reihe, Header-Spalte -->									<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->					<!-- START normale Reihe -->	<tr>						<!-- START normale Reihe, Spacer-Spalte -->	
+							<td bgcolor="#eeeeee" rowSpan="1"><img src="images/transparent.gif" width="1" height="5"></td>
+							<!-- ENDE normale Reihe, Spacer-Spalte -->
+									</tr>	<!-- ENDE normale Reihe -->		
+	</table>
+    <br />
+    <div class="dontprint">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="95%">
+    	<tr>
+        	<td align="left" nowrap witdt="50%"><img src="images/raum-frei.gif" alt="frei"> = frei  &nbsp; &nbsp; <img src="images/raum-besetzt.gif" alt="belegt"> = belegt &nbsp; &nbsp; <img src="images/raum-geschlossen.gif" alt="geschlossen"> = geschlossen</td>
+            
+            <td width="50%" align="left" nowrap >
+            <form>
+				
+                <input type="button" name="button" value="drucken" onclick="window.print()" class="submit">
+			</form>
+            </td>
+      </tr>
+    </table>
+    </div>
+
+
+</body>
+</html>
+
+        0  ...               7
+0     NaN  ...  Samstag  29.10
+4     7-8  ...             NaN
+8     8-9  ...             NaN
+12   9-10  ...             NaN
+16  10-11  ...             NaN
+20  11-12  ...             NaN
+24  12-13  ...             NaN
+28  13-14  ...             NaN
+32  14-15  ...             NaN
+36  15-16  ...             NaN
+40  16-17  ...             NaN
+44  17-18  ...             NaN
+48  18-19  ...             NaN
+52  19-20  ...             NaN
+56  20-21  ...             NaN
+60  21-22  ...             NaN
+
+[16 rows x 7 columns]
+Done 28.10.2022 17:39:38 in 2.7223830223083496s

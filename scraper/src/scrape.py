@@ -29,27 +29,48 @@ args = parser.parse_args()
 
 def extract_data_day(d: date,  r1, rooms):
     for room in rooms:
+        r3 = requests.get(
+            "https://www.rauminfo.ethz.ch/RauminfoPre.do?region={region}&areal={areal}&gebaeude={building}&geschoss={floor}&raumNr={room_number}".format(
+                region= "Z",
+                areal="Z",
+                building= "CAB",
+                floor="G",
+                room_number= "11",
+            )
+        )
+
+        # print("RISESSIONID=", r3.cookies["RISESSIONID"])
+        print(r3.cookies)
+        r3.cookies.clear()
+        r3.cookies.set("RISESSIONID", "62wk5Ig7nzOudw6mIezokANw7kYLbNXIp_-NG0bmD5PUIdis999N!692446820", domain="www.rauminfo.ethz.ch")
+        print(r3.cookies)
+
         params = {
-            "region": room["region"],
-            "areal": room["area"],
-            "gebaeude": room["building"],
-            "geschoss": room["floor"],
-            "raumNr": room["room_number"],
+            "region": "Z",
+            "areal": "Z",
+            "gebaeude": "CAB",
+            "geschoss": "G",
+            "raumNr": "11",
             "rektoratInListe": "true",
             "raumInRaumgruppe": "true",
-            "tag": d.day,
-            "monat": get_month(d),
-            "jahr": d.year,
+            "tag": 29,
+            "monat": "Okt",
+            "jahr": 2022,
             "checkUsage": "anzeigen"
         }
 
+
         r2 = requests.post(
-            'http://www.rauminfo.ethz.ch/Rauminfo/Rauminfo.do',
-            cookies=r1.cookies,
-            data=params,
+            'https://www.rauminfo.ethz.ch/Rauminfo/Belegungen.jsp',
+            cookies=r3.cookies
         )
 
+        if (r2.text.find("Fehler in der Applikation rauminfo aufgetreten.") != -1):
+            print("Error in rauminfo")
+            return
+
         extractData(r2.text, d, room["id"])
+        break
 
 
 start_time = time.time()

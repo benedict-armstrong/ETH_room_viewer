@@ -8,14 +8,16 @@ if 'PGHOST' in os.environ:
         server=os.environ['PGHOST'],
         database=os.environ['PGDATABASE'],
         user=os.environ['PGUSER'],
-        password=os.environ['PGPASSWORD']
+        password=os.environ['PGPASSWORD'],
+        port=os.environ['PGPORT']
     )
 else:
     db.connect(
-        server="ben-docker-1",
+        server="localhost",
         database="eth_rooms",
         user="postgres",
-        password="postgres"
+        password="postgres",
+        port="8001"
     )
 
 

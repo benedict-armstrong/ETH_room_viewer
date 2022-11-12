@@ -48,6 +48,8 @@ def extractData(html: str, date: date, room_id: int):
         # read table into df
         df = pd.read_html(table.prettify())[0].iloc[::4, :].drop(columns=[1])
 
+        print(df)
+
         # set columns to dates
         df.columns = df.iloc[0]
         df = df[1:]
