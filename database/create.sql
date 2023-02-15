@@ -1,12 +1,4 @@
-CREATE TABLE IF NOT EXISTS map_data (
-    id SERIAL,
-    points VARCHAR(10000),
-    height VARCHAR(10),
-    width VARCHAR(10),
-    room_id INTEGER NOT NULL,
-    CONSTRAINT fk_room FOREIGN KEY(room_id) REFERENCES rooms(id),
-    PRIMARY KEY(id)
-);
+SET TIME ZONE 'Europe/Zurich';
 
 CREATE TABLE IF NOT EXISTS rooms (
     id SERIAL,
@@ -24,13 +16,21 @@ CREATE TABLE IF NOT EXISTS rooms (
     PRIMARY KEY(id)
 );
 
-CREATE TABLE IF NOT EXISTS bookings (
+CREATE TABLE IF NOT EXISTS map_data (
     id SERIAL,
-    name VARCHAR(255) NOT NULL,
-    time TIMESTAMP NOT NULL,
-    room_id INTEGER NOT NULL,
-    CONSTRAINT fk_room FOREIGN KEY(room_id) REFERENCES rooms(id),
+    points VARCHAR(10000),
+    height VARCHAR(10),
+    width VARCHAR(10),
+    room_id INTEGER NOT NULL REFERENCES rooms(id),
     PRIMARY KEY(id)
 );
 
-ALTER TABLE bookings ADD CONSTRAINT bookings_unique_time_room UNIQUE (time, room_id);
+CREATE TABLE IF NOT EXISTS bookings (
+    id SERIAL,
+    name VARCHAR(255) NOT NULL,
+    start_time TIMESTAMP NOT NULL,
+    end_time TIMESTAMP NOT NULL,
+    room_id INTEGER NOT NULL REFERENCES rooms(id),
+    -- UNIQUE (start_time, end_time, room_id),
+    PRIMARY KEY(id)
+);

@@ -1,1 +1,1 @@
-docker run -e PGUSER=postgres -e PGHOST=localhost -e PGPASSWORD=postgres -e PGDATABASE=eth_rooms --rm --name eth_rooms_scraper benarmstrong/eth_rooms_scraper python scrape.py
+docker run --rm --name eth_rooms_scraper benarmstrong/eth_rooms_scraper python scrape.py
