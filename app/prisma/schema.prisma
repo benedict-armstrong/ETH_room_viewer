@@ -1,0 +1,46 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["views"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Booking {
+  id         Int      @id(map: "bookings_pkey") @default(autoincrement())
+  name       String   @db.VarChar(511)
+  start_time DateTime @db.Timestamp(6)
+  room_id    Int
+  end_time   DateTime @db.Timestamp(6)
+  Room       Room     @relation(fields: [room_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_room")
+
+  @@unique([start_time, room_id, end_time], map: "bookings_unique_time_room")
+}
+
+model MapData {
+  id      Int     @id(map: "map_data_pkey") @default(autoincrement())
+  points  String? @db.VarChar(10000)
+  height  String? @db.VarChar(10)
+  width   String? @db.VarChar(10)
+  room_id Int
+  Room    Room    @relation(fields: [room_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_room")
+}
+
+model Room {
+  id          Int       @id(map: "rooms_pkey") @default(autoincrement())
+  name        String    @db.VarChar(255)
+  building    String    @db.VarChar(127)
+  area        String    @db.VarChar(127)
+  region      String    @db.VarChar(127)
+  floor       String    @db.VarChar(63)
+  room_number String    @db.VarChar(63)
+  capacity    Int?
+  room_type   String    @db.VarChar(63)
+  latitude    String?   @db.VarChar(63)
+  longitude   String?   @db.VarChar(63)
+  room_data   Boolean   @default(false)
+  MapData     MapData[]
+  Bookings    Booking[]
+}

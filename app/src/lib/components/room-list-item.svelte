@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { Room, RoomWithNextBooking } from '../models/types';
+	import type { RoomWithBookings } from '$lib/models/types';
 	import { format, formatDistance } from 'date-fns';
 
-	export let room: RoomWithNextBooking;
+	export let room: RoomWithBookings;
 	export let showFreeUntil = true;
 
 	export function click() {
@@ -12,6 +12,7 @@
 	}
 </script>
 
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
 	on:click={click}
 	class="flex justify-between border-b-2 border-gray-200 p-2 last:border-b-0 sm:hover:bg-gray-100"
@@ -23,13 +24,19 @@
 	</p>
 	{#if showFreeUntil}
 		<p>
-			{#if room.booking_name && room.booking_start_time}
+			{#if room.Bookings && room.Bookings.length > 0}
 				<!-- {#if Math.abs(room.booking_start_time.getTime() - new Date().getTime()) > 2.16e7}
 					{format(room.next_booking, 'HH:mm eee dd/LL')}
 				{:else}
 					{formatDistance(room.next_booking, new Date(), { addSuffix: false })}
 				{/if} -->
-				{format(room.booking_start_time, 'HH:mm eee dd/LL')}
+				{#if room.Bookings[0].start_time < new Date()}
+					<span class="text-red-500 text-sm">occ. until</span>
+					{formatDistance(room.Bookings[0].end_time, new Date(), { addSuffix: false })}
+					<!-- {format(room.Bookings[0].end_time, 'HH:mm eee dd/LL')} -->
+				{:else}
+					{formatDistance(room.Bookings[0].start_time, new Date(), { addSuffix: false })}
+				{/if}
 			{:else}
 				<span class="text-gray-200 text-sm">no bookings</span>
 			{/if}

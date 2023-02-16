@@ -1,4 +1,4 @@
-import type { Room } from '$lib/models/types';
+import type { Room } from '@prisma/client';
 
 export function generateUrl(room: Room): string {
 	return `http://www.rauminfo.ethz.ch/RauminfoPre.do?region=${room.region.charAt(

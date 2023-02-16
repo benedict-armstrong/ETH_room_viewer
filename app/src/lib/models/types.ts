@@ -1,26 +1,17 @@
-export type Room = {
-	id: number | undefined;
-	name: string;
-	area: string;
-	building: string;
-	floor: string;
-	region: string;
-	room_number: string;
-	room_type: string;
-	capacity: number | undefined;
+import type { Booking, MapData, Room } from '@prisma/client';
+
+export type RoomWithBookings = Room & {
+	Bookings: Booking[];
 };
 
-export interface RoomWithNextBooking extends Room {
-	booking_start_time: Date | undefined;
-	booking_end_time: Date | undefined;
-	booking_name: string | undefined;
-	booking_id: number | undefined;
-}
+export type RoomWithBookingsAndMapData = RoomWithBookings & {
+	MapData: MapData[];
+};
 
 export interface Building {
 	name: string;
 	location: Location | undefined;
-	rooms: RoomWithNextBooking[];
+	rooms: RoomWithBookings[];
 }
 
 export interface Area {
@@ -35,11 +26,4 @@ export interface Filter {
 interface Location {
 	longitude: number;
 	latitude: number;
-}
-
-interface Booking {
-	id?: number;
-	name: string;
-	start_time: Date;
-	end_time: Date;
 }

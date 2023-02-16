@@ -1,13 +1,6 @@
 <script lang="ts">
 	import '../app.css';
 	import Nav from '$lib/components/nav.svelte';
-	import { onMount } from 'svelte';
-	import { goto } from '$app/navigation';
-
-	onMount(async () => {
-		// Proxy redirects requests to / to /rooms
-		await goto('/rooms', { replaceState: true });
-	});
 </script>
 
 <Nav />
