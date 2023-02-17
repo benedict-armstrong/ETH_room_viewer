@@ -24,7 +24,7 @@ model MapData {
   points  String? @db.VarChar(10000)
   height  String? @db.VarChar(10)
   width   String? @db.VarChar(10)
-  room_id Int
+  room_id Int     @unique(map: "unique_room")
   Room    Room    @relation(fields: [room_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_room")
 }
 
@@ -41,6 +41,6 @@ model Room {
   latitude    String?   @db.VarChar(63)
   longitude   String?   @db.VarChar(63)
   room_data   Boolean   @default(false)
-  MapData     MapData[]
+  MapData     MapData?
   Bookings    Booking[]
 }

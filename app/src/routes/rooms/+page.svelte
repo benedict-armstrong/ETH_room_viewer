@@ -56,13 +56,15 @@
 			/>
 		</svg>
 	</span>
-	icon to view a map of the free Rooms.<br />
-	<!-- During lernphase you can find rooms for studying
-	<a sveltekit:prefetch class="text-sky-700 underline" href="/rooms/lernphase">here</a>. -->
+	icon to view a map of the free Rooms.
+	<br />
+	<br />
+	During lernphase you can find rooms for studying
+	<a data-sveltekit-preload-data class="text-sky-700 underline" href="/rooms/lernphase">here</a>.
 </p>
-<div class="mb-12 flex w-full items-center justify-center">
-	<!-- <ToggleButton label="Hour Mode" /> -->
-</div>
+<!-- <div class="mb-12 flex w-full items-center justify-center">
+	<ToggleButton label="Hour Mode" />
+</div> -->
 {#if !filtered}
 	<Loading />
 {:else}

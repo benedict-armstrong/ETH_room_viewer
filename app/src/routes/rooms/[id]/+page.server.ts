@@ -34,6 +34,5 @@ export const load = (async ({ params }) => {
 		}
 	});
 
-	// console.log(room);
 	return { room };
 }) satisfies PageServerLoad;

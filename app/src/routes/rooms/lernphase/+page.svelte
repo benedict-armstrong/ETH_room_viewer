@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<!-- <script context="module" lang="ts">
 	import { api_url } from '$lib/global/globals';
 
 	export async function load({ fetch }) {
@@ -64,4 +64,4 @@
 	<Loading />
 {:else}
 	<AreaList areas={groupIntoAreas(filtered)} showFreeUntil={false} />
-{/if}
+{/if} -->

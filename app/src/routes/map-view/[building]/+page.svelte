@@ -41,8 +41,6 @@
 
 <div class="max-w-full p-2">
 	{#each floors as floor}
-		<div class="m-1 my-2 flex items-center justify-center">
-			<Floorplan rooms={floor.rooms} />
-		</div>
+		<Floorplan rooms={floor.rooms} />
 	{/each}
 </div>

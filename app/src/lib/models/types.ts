@@ -5,7 +5,7 @@ export type RoomWithBookings = Room & {
 };
 
 export type RoomWithBookingsAndMapData = RoomWithBookings & {
-	MapData: MapData[];
+	MapData: MapData;
 };
 
 export interface Building {
