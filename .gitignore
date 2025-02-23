@@ -1,0 +1,7 @@
+config.env
+scraper/
+database/data
+eth_rooms_logo.afdesign
+docker-compose.yml
+build/
+.ipynb_checkpoints
