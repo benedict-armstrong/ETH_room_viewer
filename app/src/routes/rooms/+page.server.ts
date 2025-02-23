@@ -4,7 +4,7 @@ import prisma from '$lib/server/prisma';
 export const load = async () => {
 	const rooms = await prisma.room.findMany({
 		include: {
-			Bookings: {
+			bookings: {
 				where: {
 					end_time: {
 						gt: new Date()

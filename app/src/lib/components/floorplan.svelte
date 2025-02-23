@@ -17,12 +17,12 @@
 					Room: {selected_room.name}
 				</div>
 				<div>
-					{#if selected_room.Bookings.length > 0 && selected_room.Bookings[0].start_time.getDay() === new Date().getDay()}
-						Next/Current Booking: {format(selected_room.Bookings[0].start_time, 'HH:mm')} - {format(
-							selected_room.Bookings[0].end_time,
+					{#if selected_room.bookings.length > 0 && selected_room.bookings[0].start_time.getDay() === new Date().getDay()}
+						Next/Current Booking: {format(selected_room.bookings[0].start_time, 'HH:mm')} - {format(
+							selected_room.bookings[0].end_time,
 							'HH:mm'
 						)}
-						{selected_room.Bookings[0].name}
+						{selected_room.bookings[0].name}
 					{:else}
 						No bookings today
 					{/if}
@@ -48,7 +48,7 @@
 			/>
 			<svg
 				class="absolute top-0 left-0 h-full w-full"
-				viewBox="0 0 {rooms[0].MapData?.width} {rooms[0].MapData?.height}"
+				viewBox="0 0 {rooms[0].map_data?.width} {rooms[0].map_data?.height}"
 				height="100%"
 				version="1.2"
 				width="100%"
@@ -59,7 +59,7 @@
 					<!-- {@const next_booking = room.
 					? Date.parse(room.next_booking.toString()) + userTimezoneOffset
 					: null} -->
-					{#if room.MapData}
+					{#if room.map_data}
 						<g>
 							<!-- svelte-ignore a11y-click-events-have-key-events -->
 							<polygon
@@ -77,12 +77,12 @@
 								}}
 								fill-opacity="0.5"
 								class=" fill-gray-400 hover:stroke-[#273F76] hover:stroke-[5px]"
-								points={room.MapData.points}
-								style="fill: {room.Bookings.length > 0
+								points={room.map_data.points}
+								style="fill: {room.bookings.length > 0
 									? percent2color(
-											room.Bookings[0].start_time < new Date()
+											room.bookings[0].start_time < new Date()
 												? 0
-												: (room.Bookings[0].start_time.getTime() - new Date().getTime()) / 2.16e5
+												: (room.bookings[0].start_time.getTime() - new Date().getTime()) / 2.16e5
 									  )
 									: percent2color(100)};"
 							>

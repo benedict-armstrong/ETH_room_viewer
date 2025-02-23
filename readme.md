@@ -25,12 +25,6 @@ If you have any suggestions for improvements or questions send me an email. Feel
 cd frontend; npm run dev
 ```
 
-### Start backend locally:
-
-```{bash}
-cd api; npm run dev
-```
-
 ---
 
 created by Benedict Armstrong, 2022

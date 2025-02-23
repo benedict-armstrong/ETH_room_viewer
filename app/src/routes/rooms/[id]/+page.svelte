@@ -46,8 +46,8 @@
 			{/if}
 		</div>
 
-		{#if room.Bookings.length > 0}
-			{@const bookingsByDate = splitBookings(room.Bookings)}
+		{#if room.bookings.length > 0}
+			{@const bookingsByDate = splitBookings(room.bookings)}
 			<div>
 				<h3 class="text-lg font-semibold">Next Bookings:</h3>
 				{#each Object.entries(bookingsByDate) as [date_string, bookings]}
@@ -78,7 +78,7 @@
 			<p>No more bookings this week</p>
 		{/if}
 
-		{#if room.MapData}
+		{#if room.map_data}
 			<div class="m-1 my-2 flex items-center justify-center">
 				<Floorplan rooms={[room]} />
 			</div>

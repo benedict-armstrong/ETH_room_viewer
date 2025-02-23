@@ -2,7 +2,7 @@ import argparse
 from datetime import date, datetime, timedelta
 import logging
 import time
-from typing import Iterable, List
+from typing import Iterable
 import locale
 
 import requests
@@ -80,7 +80,7 @@ def scrape_rauminfo(date: date, rooms: Iterable[Room], cookies: dict = None):
             }
         )
 
-        print(r3.text, file=open("test.html", "w"))
+        # print(r3.text, file=open("test.html", "w"))
         if r3.status_code != 200:
             __LOGGER__.error(
                 f"r3 failed: {r3.status_code} {r3.text} (room: {room}))")
@@ -94,7 +94,7 @@ def scrape_rauminfo(date: date, rooms: Iterable[Room], cookies: dict = None):
         if r3.text.find("Übersichtsliste") != -1:
             __LOGGER__.warning(
                 f"r3 failed (room: {room})")
-            print(r3.text, file=open("test.html", "w"))
+            # print(r3.text, file=open("test.html", "w"))
             continue
 
         insert_bookings_list(extractData(r3.text, date, room.id))

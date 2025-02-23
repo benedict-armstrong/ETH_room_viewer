@@ -24,18 +24,18 @@
 	</p>
 	{#if showFreeUntil}
 		<p>
-			{#if room.Bookings && room.Bookings.length > 0}
+			{#if room.bookings && room.bookings.length > 0}
 				<!-- {#if Math.abs(room.booking_start_time.getTime() - new Date().getTime()) > 2.16e7}
 					{format(room.next_booking, 'HH:mm eee dd/LL')}
 				{:else}
 					{formatDistance(room.next_booking, new Date(), { addSuffix: false })}
 				{/if} -->
-				{#if room.Bookings[0].start_time < new Date()}
+				{#if room.bookings[0].start_time < new Date()}
 					<span class="text-red-500 text-sm">occ. until</span>
-					{formatDistance(room.Bookings[0].end_time, new Date(), { addSuffix: false })}
+					{formatDistance(room.bookings[0].end_time, new Date(), { addSuffix: false })}
 					<!-- {format(room.Bookings[0].end_time, 'HH:mm eee dd/LL')} -->
 				{:else}
-					{formatDistance(room.Bookings[0].start_time, new Date(), { addSuffix: false })}
+					{formatDistance(room.bookings[0].start_time, new Date(), { addSuffix: false })}
 				{/if}
 			{:else}
 				<span class="text-gray-200 text-sm">no bookings</span>

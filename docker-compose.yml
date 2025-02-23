@@ -6,33 +6,18 @@ services:
     container_name: eth_rooms_proxy
     image: rafpe/docker-haproxy-rsyslog
     volumes:
-      - ./proxy/haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg
+      - ./proxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
     ports:
-      - 8080:80
-    links:
-      - eth_rooms_api
-      - eth_rooms_client
-
-  api:
-    container_name: eth_rooms_api
-    image: benarmstrong/eth_rooms_api:latest
-    build:
-      context: ./api
-      dockerfile: Dockerfile
-    restart: always
-    links:
-      - database
-    depends_on:
-      - database
-    env_file:
-      - ./api/.env
+      - 8006:80
 
   client:
     container_name: eth_rooms_client
     image: benarmstrong/eth_rooms_client
     restart: always
+    env_file:
+      - app/.docker.env
     build:
-      context: ./frontend
+      context: ./app
       dockerfile: Dockerfile
 
   database:
@@ -42,10 +27,7 @@ services:
     build:
       context: ./database
       dockerfile: Dockerfile
-      args:
-        - 'dbname=eth_rooms'
-        - 'db_password=postgres'
     volumes:
       - ./database/data:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - 8001:5432

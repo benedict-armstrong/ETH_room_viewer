@@ -7,7 +7,7 @@ export const load = (async ({ params }) => {
 			building: params.building
 		},
 		include: {
-			Bookings: {
+			bookings: {
 				where: {
 					end_time: {
 						gt: new Date()
@@ -18,7 +18,7 @@ export const load = (async ({ params }) => {
 				},
 				take: 1
 			},
-			MapData: true
+			map_data: true
 		}
 	});
 

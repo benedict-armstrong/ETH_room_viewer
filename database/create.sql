@@ -1,6 +1,6 @@
 SET TIME ZONE 'Europe/Zurich';
 
-CREATE TABLE IF NOT EXISTS rooms (
+CREATE TABLE IF NOT EXISTS Room (
     id SERIAL,
     name VARCHAR(255) NOT NULL,
     building VARCHAR(127) NOT NULL,
@@ -16,21 +16,21 @@ CREATE TABLE IF NOT EXISTS rooms (
     PRIMARY KEY(id)
 );
 
-CREATE TABLE IF NOT EXISTS map_data (
+CREATE TABLE IF NOT EXISTS MapData (
     id SERIAL,
     points VARCHAR(10000),
     height VARCHAR(10),
     width VARCHAR(10),
-    room_id INTEGER NOT NULL REFERENCES rooms(id),
+    room_id INTEGER NOT NULL UNIQUE REFERENCES Room(id),
     PRIMARY KEY(id)
 );
 
-CREATE TABLE IF NOT EXISTS bookings (
+CREATE TABLE IF NOT EXISTS Booking (
     id SERIAL,
     name VARCHAR(255) NOT NULL,
     start_time TIMESTAMP NOT NULL,
     end_time TIMESTAMP NOT NULL,
-    room_id INTEGER NOT NULL REFERENCES rooms(id),
-    -- UNIQUE (start_time, end_time, room_id),
+    room_id INTEGER NOT NULL REFERENCES Room(id),
+    UNIQUE (start_time, end_time, room_id),
     PRIMARY KEY(id)
 );

@@ -1,11 +1,11 @@
 import type { Booking, MapData, Room } from '@prisma/client';
 
 export type RoomWithBookings = Room & {
-	Bookings: Booking[];
+	bookings: Booking[];
 };
 
 export type RoomWithBookingsAndMapData = RoomWithBookings & {
-	MapData: MapData;
+	map_data: MapData;
 };
 
 export interface Building {

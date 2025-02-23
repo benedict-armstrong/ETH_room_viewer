@@ -16,9 +16,16 @@ db.connect(
 )
 
 
+def get_all_tables():
+    with get_db_cursor() as cursor:
+        cursor.execute(
+            """select table_name from information_schema.tables where table_schema = 'public'""")
+        return cursor.fetchall()
+
+
 def get_room_id_by_name(name):
     with get_db_cursor() as cursor:
-        cursor.execute("""select id from room where name = %s""", [name])
+        cursor.execute("""select id from "Room" where name = %s""", [name])
         return cursor.fetchone()
 
 
@@ -44,20 +51,20 @@ def update_map_data_points(points: str, room_id: int):
 
 def delete_all_past_bookings():
     with get_db_cursor() as cursor:
-        cursor.execute("""delete from Booking where end_time < now()""")
+        cursor.execute("""delete from "Booking" where end_time < now()""")
 
 
 def update_rooms_where_data_available():
     with get_db_cursor() as cursor:
         cursor.execute(
-            """update room set room_data = true where id in (select room_id from booking)""")
+            """update "Room" set room_data = true where id in (select room_id from "Booking")""")
 
 
 def insert_bookings_list(bookings: List[Booking]):
     with get_db_cursor() as cursor:
         cursor.executemany(
             """
-        INSERT INTO booking (name, start_time, end_time, room_id) VALUES (%s, %s, %s, %s)
+        INSERT INTO "Booking" (name, start_time, end_time, room_id) VALUES (%s, %s, %s, %s)
         ON CONFLICT ON CONSTRAINT bookings_unique_time_room DO UPDATE
             SET
                 start_time = EXCLUDED.start_time,
@@ -68,18 +75,18 @@ def insert_bookings_list(bookings: List[Booking]):
 
 def update_room_lat_lng_values(building_name, latitude, longitude):
     with get_db_cursor() as cursor:
-        cursor.execute("""update room set latitude = %s, longitude = %s where building = %s""", [
+        cursor.execute("""update "Room" set latitude = %s, longitude = %s where building = %s""", [
                        latitude, longitude, building_name])
 
 
 def delete_all_room():
     with get_db_cursor() as cursor:
-        cursor.execute("""delete from room *""")
+        cursor.execute("""delete from "Room" *""")
 
 
 def get_all_rooms() -> List[Room]:
     with get_db_cursor() as cursor:
-        cursor.execute("""select * from room""")
+        cursor.execute("""select * from "Room";""")
         raw = cursor.fetchall()
         return [Room(**r) for r in raw]
 
@@ -87,13 +94,13 @@ def get_all_rooms() -> List[Room]:
 def get_all_rooms_in_building(building_name):
     with get_db_cursor() as cursor:
         cursor.execute(
-            """select * from room where building = %s""", [building_name])
+            """select * from "Room" where building = %s""", [building_name])
         return cursor.fetchall()
 
 
 def insert_rooms(row):
     with get_db_cursor() as cursor:
-        cursor.execute("""insert into room
+        cursor.execute("""insert into "Room"
             (name, building, area, region, floor, room_number, capacity, room_type)
             values 
             (%s, %s, %s, %s, %s, %s, %s, %s)""",

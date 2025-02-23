@@ -1,6 +1,7 @@
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["views"]
+  binaryTargets   = ["native", "linux-arm64-openssl-1.1.x", "debian-openssl-1.1.x"]
 }
 
 datasource db {
@@ -9,27 +10,27 @@ datasource db {
 }
 
 model Booking {
-  id         Int      @id(map: "bookings_pkey") @default(autoincrement())
-  name       String   @db.VarChar(511)
+  id         Int      @id @default(autoincrement())
+  name       String   @db.VarChar(255)
   start_time DateTime @db.Timestamp(6)
-  room_id    Int
   end_time   DateTime @db.Timestamp(6)
-  Room       Room     @relation(fields: [room_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_room")
+  room_id    Int
+  room       Room     @relation(fields: [room_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
-  @@unique([start_time, room_id, end_time], map: "bookings_unique_time_room")
+  @@unique([start_time, end_time, room_id])
 }
 
 model MapData {
-  id      Int     @id(map: "map_data_pkey") @default(autoincrement())
+  id      Int     @id @default(autoincrement())
   points  String? @db.VarChar(10000)
   height  String? @db.VarChar(10)
   width   String? @db.VarChar(10)
-  room_id Int     @unique(map: "unique_room")
-  Room    Room    @relation(fields: [room_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_room")
+  room_id Int     @unique
+  room    Room    @relation(fields: [room_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model Room {
-  id          Int       @id(map: "rooms_pkey") @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   name        String    @db.VarChar(255)
   building    String    @db.VarChar(127)
   area        String    @db.VarChar(127)
@@ -41,6 +42,6 @@ model Room {
   latitude    String?   @db.VarChar(63)
   longitude   String?   @db.VarChar(63)
   room_data   Boolean   @default(false)
-  MapData     MapData?
-  Bookings    Booking[]
+  bookings    Booking[]
+  map_data    MapData?
 }

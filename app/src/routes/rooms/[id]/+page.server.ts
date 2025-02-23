@@ -8,7 +8,7 @@ export const load = (async ({ params }) => {
 			id: parseInt(params.id)
 		},
 		include: {
-			Bookings: {
+			bookings: {
 				where: {
 					OR: [
 						{
@@ -30,7 +30,7 @@ export const load = (async ({ params }) => {
 					start_time: 'asc'
 				}
 			},
-			MapData: true
+			map_data: true
 		}
 	});
 
