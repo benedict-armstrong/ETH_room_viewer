@@ -5,50 +5,15 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1740324617376,
-      "tag": "0000_melted_big_bertha",
+      "when": 1740338648490,
+      "tag": "0000_happy_steve_rogers",
       "breakpoints": true
     },
     {
       "idx": 1,
       "version": "7",
-      "when": 1740325027206,
-      "tag": "0001_ancient_maddog",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1740326241575,
-      "tag": "0002_spooky_boomer",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1740328521524,
-      "tag": "0003_reflective_mathemanic",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1740328578677,
-      "tag": "0004_whole_black_bird",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "7",
-      "when": 1740328639470,
-      "tag": "0005_ancient_hardball",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "7",
-      "when": 1740330258178,
-      "tag": "0006_many_speed",
+      "when": 1740339003435,
+      "tag": "0001_tough_viper",
       "breakpoints": true
     }
   ]

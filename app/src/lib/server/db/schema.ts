@@ -1,4 +1,13 @@
-import { pgTable, serial, varchar, integer, timestamp, unique } from 'drizzle-orm/pg-core';
+import {
+	pgTable,
+	serial,
+	varchar,
+	integer,
+	timestamp,
+	index,
+	unique,
+	geometry
+} from 'drizzle-orm/pg-core';
 import { SQL, sql } from 'drizzle-orm';
 
 // Room table
@@ -14,8 +23,8 @@ export const Room = pgTable(
 		region: varchar('region', { length: 127 }).notNull(),
 
 		type: varchar('type', { length: 63 }).notNull(),
-		latitude: varchar('latitude', { length: 63 }),
-		longitude: varchar('longitude', { length: 63 }),
+
+		location: geometry('location', { type: 'point', mode: 'xy', srid: 4326 }),
 
 		name: varchar('name', { length: 255 })
 			.notNull()
@@ -25,7 +34,8 @@ export const Room = pgTable(
 	},
 	(table) => [
 		// Add unique constraint for room, floor & building
-		unique().on(table.room, table.floor, table.building)
+		unique().on(table.room, table.floor, table.building),
+		index('spatial_index').using('gist', table.location)
 	]
 );
 

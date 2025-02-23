@@ -1,5 +1,5 @@
 {
-  "id": "ac0fb405-34d1-4f07-a781-8654124c7089",
+  "id": "6945364c-d229-41f6-bebe-e550f17f2ab6",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -30,7 +30,7 @@
           "name": "event_id",
           "type": "integer",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "room_id": {
           "name": "room_id",
@@ -41,10 +41,10 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "Booking_event_id_EVENT_id_fk": {
-          "name": "Booking_event_id_EVENT_id_fk",
+        "Booking_event_id_Event_id_fk": {
+          "name": "Booking_event_id_Event_id_fk",
           "tableFrom": "Booking",
-          "tableTo": "EVENT",
+          "tableTo": "Event",
           "columnsFrom": [
             "event_id"
           ],
@@ -74,8 +74,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.EVENT": {
-      "name": "EVENT",
+    "public.Event": {
+      "name": "Event",
       "schema": "",
       "columns": {
         "id": {
@@ -222,29 +222,43 @@
           "primaryKey": false,
           "notNull": true
         },
-        "room_type": {
-          "name": "room_type",
+        "type": {
+          "name": "type",
           "type": "varchar(63)",
           "primaryKey": false,
           "notNull": true
         },
-        "latitude": {
-          "name": "latitude",
-          "type": "varchar(63)",
+        "location": {
+          "name": "location",
+          "type": "geometry(point)",
           "primaryKey": false,
           "notNull": false
         },
-        "longitude": {
-          "name": "longitude",
-          "type": "varchar(63)",
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true,
+          "generated": {
+            "as": "\"Room\".\"building\" || ' ' || \"Room\".\"floor\" || ' ' || \"Room\".\"room\"",
+            "type": "stored"
+          }
         }
       },
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
+      "uniqueConstraints": {
+        "Room_room_floor_building_unique": {
+          "name": "Room_room_floor_building_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "room",
+            "floor",
+            "building"
+          ]
+        }
+      },
       "policies": {},
       "checkConstraints": {},
       "isRLSEnabled": false
