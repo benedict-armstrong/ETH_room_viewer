@@ -1,0 +1,1 @@
+ALTER TABLE "Room" ADD CONSTRAINT "Room_room_floor_building_unique" UNIQUE("room","floor","building");

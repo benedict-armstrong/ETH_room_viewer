@@ -1,0 +1,1 @@
+ALTER TABLE "Room" RENAME COLUMN "room_type" TO "type";

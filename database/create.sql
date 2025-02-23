@@ -1,5 +1,3 @@
-SET TIME ZONE 'Europe/Zurich';
-
 CREATE TABLE IF NOT EXISTS Room (
     id SERIAL,
     name VARCHAR(255) NOT NULL,

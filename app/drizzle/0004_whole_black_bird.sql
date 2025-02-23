@@ -1,0 +1,2 @@
+ALTER TABLE "Room" drop column "name";--> statement-breakpoint
+ALTER TABLE "Room" ADD COLUMN "name" varchar(255) GENERATED ALWAYS AS ("Room"."building" || ' ' || "Room"."floor" || ' ' || "Room"."room") STORED;
