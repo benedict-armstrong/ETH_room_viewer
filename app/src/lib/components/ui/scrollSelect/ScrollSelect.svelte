@@ -29,15 +29,22 @@
 
 		let closest: HTMLElement | null = null;
 		let minDistance = Infinity;
+		const maxDistance = container.clientHeight / 2;
+		const minOpacity = 0.25;
 
 		itemElements.forEach((el) => {
 			const rect = el.getBoundingClientRect();
 			const elCenter = rect.top + rect.height / 2;
 			const distance = Math.abs(elCenter - containerCenter);
+			// Determine which element is closest to the center.
 			if (distance < minDistance) {
 				minDistance = distance;
 				closest = el;
 			}
+			// Calculate a new opacity based on distance from the center.
+			let newOpacity = 1 - distance / maxDistance;
+			if (newOpacity < minOpacity) newOpacity = minOpacity;
+			el.style.opacity = newOpacity.toString();
 		});
 
 		if (closest) {
@@ -53,10 +60,6 @@
 	});
 </script>
 
-<!-- 
-    The container uses Tailwind classes to enable vertical scrolling with snap behavior.
-    Any additional classes passed to this component will be added (via Svelte’s attribute forwarding).
-  -->
 <div
 	bind:this={container}
 	onclick={() => select($selected)}

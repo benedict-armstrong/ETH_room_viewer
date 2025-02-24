@@ -54,10 +54,14 @@
 						selectedClass="text-white text-4xl"
 						notSelectedClass="text-gray-300 text-2xl opacity-80"
 					>
-						<div class="flex items-baseline">
-							{building.building}
+						<div class="relative">
+							<div>
+								{building.building}
+							</div>
 							{#if building.distance}
-								<span class="ml-3 text-sm">({formatDistance(building.distance)})</span>
+								<div class="w-30 absolute left-20 top-[50%] ml-3 text-[0.7rem] text-gray-200">
+									{formatDistance(building.distance)}
+								</div>
 							{/if}
 						</div>
 					</ScrollSelectOption>
