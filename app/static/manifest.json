@@ -1,0 +1,28 @@
+{
+	"short_name": "ETH Rooms",
+	"name": "ETH Rooms",
+	"icons": [
+		{
+			"src": "/eth_rooms_logo_blue_transparent.png",
+			"type": "image/png",
+			"sizes": "1000x1000"
+		},
+		{
+			"src": "/android-chrome-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "/android-chrome-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	],
+	"start_url": "/rooms",
+	"background_color": "#3367D6",
+	"display": "standalone",
+	"theme_color": "#273f76",
+	"shortcuts": [],
+	"description": "Find a free Room at ETH",
+	"screenshots": []
+}

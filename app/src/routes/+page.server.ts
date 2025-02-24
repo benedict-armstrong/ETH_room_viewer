@@ -1,6 +1,6 @@
 import type { PageServerLoad } from './$types';
 import { db } from '$lib/server/db';
-import { getTableColumns, sql } from 'drizzle-orm';
+import { sql } from 'drizzle-orm';
 import { Room } from '$lib/server/db/schema';
 
 export const load: PageServerLoad = async ({ cookies }) => {
@@ -10,24 +10,37 @@ export const load: PageServerLoad = async ({ cookies }) => {
 	const longitude = location?.longitude;
 
 	if (!latitude || !longitude) {
-		const rooms = await db.select().from(Room);
+		const buildings = await db
+			.selectDistinct({ building: Room.building })
+			.from(Room)
+			.orderBy(Room.building);
 		// add distance to each room
-		return { rooms: rooms.map((room) => ({ ...room, distance: -1 })) };
+		return { buildings: buildings.map((b) => ({ ...b, distance: null })) };
 	}
 
 	const sqlPoint = sql`ST_SetSRID(ST_MakePoint(${latitude}, ${longitude}), 4326)`;
 
-	// get all rooms from the database sorted by distance from the given coordinates
-	const rooms = await db
-		.select({
-			...getTableColumns(Room),
-			distance: sql<number>`ST_Distance(${Room.location}, ${sqlPoint}, TRUE)`
+	// Build the subquery with the ordering expression included
+	const subquery = db
+		.selectDistinct({
+			building: Room.building,
+			distance: sql<number>`ST_Distance(${Room.location}, ${sqlPoint}, TRUE)`.as('distance'),
+			orderDistance: sql`${Room.location} <-> ${sqlPoint}`.as('orderDistance')
 		})
 		.from(Room)
-		.orderBy(sql`${Room.location} <-> ${sqlPoint}`);
+		.as('sub');
 
-	console.log(rooms[0].distance);
+	// Now select only the desired columns and order by the ordering expression
+	const buildings = await db
+		.select({
+			building: subquery.building,
+			distance: subquery.distance
+		})
+		.from(subquery)
+		.orderBy(subquery.orderDistance);
 
-	// return rooms
-	return { rooms };
+	console.log(buildings[0].distance);
+
+	// return buildings
+	return { buildings };
 };

@@ -2,6 +2,8 @@
 	import { onMount } from 'svelte';
 	import type { PageProps } from './$types';
 	import { invalidateAll } from '$app/navigation';
+	import ScrollSelect from '$lib/components/ui/scrollSelect/ScrollSelect.svelte';
+	import ScrollSelectOption from '$lib/components/ui/scrollSelect/ScrollSelectOption.svelte';
 
 	let location_available = $state(false);
 
@@ -17,7 +19,7 @@
 	onMount(() => {
 		if ('geolocation' in navigator && !document.cookie.includes('location')) {
 			navigator.geolocation.getCurrentPosition((position) => {
-				// set cookie with location data
+				// set cookie with location data (expires when browser is closed)
 				document.cookie = `location=${JSON.stringify(position.coords)}`;
 
 				// force re-render using invalidate
@@ -32,19 +34,35 @@
 		}
 	});
 
+	function handleSelect(selected: string | number | null) {
+		alert(selected);
+	}
+
 	let { data }: PageProps = $props();
 </script>
 
-<h1>Page</h1>
-{#if location_available}
-	<p>Location available</p>
-{:else}
-	<p>Location not available</p>
-{/if}
-
 {#if data}
-	<!-- For room in data.rooms -->
-	{#each data.rooms as room}
-		<p>{room.name} {formatDistance(room.distance)}</p>
-	{/each}
+	<div class="grid">
+		<div class="m-3 h-[70vh] rounded-lg bg-blue-600">
+			<h2 class="m-4 text-2xl font-black text-white">Select Building:</h2>
+			<ScrollSelect select={handleSelect}>
+				<!-- <ScrollSelectOption value="Option1">Option1</ScrollSelectOption> -->
+				{#each data.buildings as building}
+					<ScrollSelectOption
+						value={building.building}
+						class="flex h-12 items-center justify-center font-black"
+						selectedClass="text-white text-4xl"
+						notSelectedClass="text-gray-300 text-2xl opacity-80"
+					>
+						<div class="flex items-baseline">
+							{building.building}
+							{#if building.distance}
+								<span class="ml-3 text-sm">({formatDistance(building.distance)})</span>
+							{/if}
+						</div>
+					</ScrollSelectOption>
+				{/each}
+			</ScrollSelect>
+		</div>
+	</div>
 {/if}
