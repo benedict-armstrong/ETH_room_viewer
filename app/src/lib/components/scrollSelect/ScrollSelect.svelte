@@ -53,6 +53,10 @@
 		}
 	}
 
+	function handleSelect(): void {
+		select($selected);
+	}
+
 	// Optionally, you can also run the scroll logic on mount
 	// to initialize the selection.
 	onMount(() => {
@@ -62,15 +66,19 @@
 
 <div
 	bind:this={container}
-	onclick={() => select($selected)}
-	onkeydown={(e) => e.key === 'Enter' && select($selected)}
-	role="listbox"
+	onclick={() => handleSelect()}
+	onkeydown={(e) => e.key === 'Enter' && handleSelect()}
+	role="radiogroup"
 	tabindex="0"
-	class={['h-[80%] snap-y snap-mandatory overflow-y-scroll', props.class]}
+	class={['focus:outline-hidden h-full snap-y snap-mandatory overflow-y-scroll', props.class]}
 	onscroll={handleScroll}
 >
 	<!-- add buffer so we can scroll to first an last element -->
+	<!-- {#if open} -->
 	<div class="h-[50%]"></div>
 	{@render children?.()}
 	<div class="h-[50%]"></div>
+	<!-- {:else}
+		<div>123 {$selected}</div>
+	{/if} -->
 </div>

@@ -31,6 +31,8 @@
 		!isSelected && notSelectedClass
 	]}
 	data-value={value}
+	role="radio"
+	aria-checked={isSelected}
 >
 	{@render props.children?.()}
 </div>
