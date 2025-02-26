@@ -14,6 +14,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
 	const location = JSON.parse(cookies.get('location') ?? '{}');
 	const latitude = location?.latitude;
 	const longitude = location?.longitude;
+	console.log(latitude, longitude);
 
 	const buildings: BuildingWithFloors[] = [];
 
@@ -66,6 +67,8 @@ export const load: PageServerLoad = async ({ cookies }) => {
 			});
 		}
 	}
+
+	console.log(buildings.map((b) => b.distance));
 
 	return { buildings };
 };

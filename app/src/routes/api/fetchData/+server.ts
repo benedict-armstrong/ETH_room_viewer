@@ -1,11 +1,21 @@
 import type { RequestHandler } from '../$types';
-import { fetch_bookings } from '$lib/server/get_bookings';
+import { fetchBookings } from '$lib/server/get_bookings';
 
 export const GET: RequestHandler = async () => {
 	try {
-		await fetch_bookings();
-		return new Response(String('OK'));
+		await fetchBookings();
+		return new Response('OK', {
+			headers: {
+				'Content-Type': 'text/plain'
+			}
+		});
 	} catch (error) {
-		return new Response(String(`Error: ${error}`), { status: 500 });
+		console.error('API fetch data error:', error);
+		return new Response(`Error: ${error instanceof Error ? error.message : String(error)}`, {
+			status: 500,
+			headers: {
+				'Content-Type': 'text/plain'
+			}
+		});
 	}
 };

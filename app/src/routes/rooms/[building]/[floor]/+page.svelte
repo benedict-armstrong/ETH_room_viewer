@@ -1,19 +1,27 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 
-	export let data: PageData;
+	let { data }: { data: PageData } = $props();
 
-	// Track expanded state for each room
-	let expandedRooms = new Set<number>();
+	// Track expanded state for each room using $state
+	let expandedRooms = $state(new Set<number>());
 
-	function toggleRoom(roomId: number) {
+	// Toggle room expansion state
+	function toggleRoom(roomId: number): void {
 		if (expandedRooms.has(roomId)) {
 			expandedRooms.delete(roomId);
 		} else {
 			expandedRooms.add(roomId);
 		}
-		expandedRooms = expandedRooms; // trigger reactivity
 	}
+
+	import {
+		formatTime,
+		formatTimeUntil,
+		formatBooking,
+		getISODateString
+	} from '$lib/utils/dateUtils';
+	import BookingItem from '$lib/components/BookingItem.svelte';
 
 	// Generate ETH room info URL
 	function getRoomInfoUrl(building: string, floor: string, room: string): string {
@@ -22,8 +30,8 @@
 		const nextWeek = new Date(today);
 		nextWeek.setDate(today.getDate() + 6);
 
-		const fromDate = today.toISOString().split('T')[0];
-		const toDate = nextWeek.toISOString().split('T')[0];
+		const fromDate = getISODateString(today);
+		const toDate = getISODateString(nextWeek);
 
 		// Format room identifier (e.g., "CAB G 61")
 		const roomId = `${building} ${floor} ${room}`;
@@ -42,58 +50,25 @@
 		return { direction, distance };
 	}
 
-	// Format date to show only time in 24h format
-	function formatTime(date: Date): string {
-		// Add one hour to adjust for timezone difference
-		const adjustedDate = new Date(date.getTime() + 60 * 60 * 1000);
-		return new Intl.DateTimeFormat('de-CH', {
-			hour: '2-digit',
-			minute: '2-digit',
-			hour12: false,
-			timeZone: 'Europe/Zurich'
-		}).format(adjustedDate);
-	}
-
-	// Format time until next booking
-	function formatTimeUntil(date: Date): string {
-		const now = new Date();
-		// Add one hour to adjust for timezone difference
-		const adjustedDate = new Date(date.getTime() + 60 * 60 * 1000);
-		const diffMs = adjustedDate.getTime() - now.getTime();
-		const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-		const diffMinutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-
-		if (diffHours > 0) {
-			return `${diffHours} h`;
-		} else if (diffMinutes > 0) {
-			return `${diffMinutes} m`;
-		} else {
-			return 'all day';
-		}
-	}
-
-	// Format booking time range with time until
-	function formatBooking(start: Date, end: Date): string {
-		return `${formatTime(start)} - ${formatTime(end)}`;
-	}
-
 	// Group rooms by floor
-	$: roomsByFloor = data.rooms.reduce(
-		(acc, room) => {
-			if (!acc[room.floor]) {
-				acc[room.floor] = [];
-			}
-			acc[room.floor].push(room);
-			return acc;
-		},
-		{} as Record<string, typeof data.rooms>
+	let roomsByFloor = $derived(
+		data.rooms.reduce(
+			(acc, room) => {
+				if (!acc[room.floor]) {
+					acc[room.floor] = [];
+				}
+				acc[room.floor].push(room);
+				return acc;
+			},
+			{} as Record<string, typeof data.rooms>
+		)
 	);
 
 	// Get floor numbers (order is preserved from server-side sorting)
-	$: floors = Object.keys(roomsByFloor);
+	let floors = $derived(Object.keys(roomsByFloor));
 
 	// Selected floor from the first room
-	$: selectedFloor = data.rooms[0]?.floor || '';
+	let selectedFloor = $derived(data.rooms[0]?.floor || '');
 </script>
 
 <!-- Add a back button to go back to the previous page set building and floor -->

@@ -118,7 +118,10 @@
 	}}
 	role="radiogroup"
 	tabindex="0"
-	class={['h-full snap-y snap-mandatory overflow-y-scroll focus:outline-hidden', props.class]}
+	class={[
+		'h-full snap-y snap-mandatory overflow-x-hidden overflow-y-scroll focus:outline-hidden',
+		props.class
+	]}
 	onscroll={handleScroll}
 >
 	<!-- add buffer so we can scroll to first an last element -->

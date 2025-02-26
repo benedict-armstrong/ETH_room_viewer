@@ -18,15 +18,8 @@
 	let floorSelectorElement: HTMLDivElement | undefined = $state();
 	let currentBuilding: BuildingWithFloors | undefined = $state();
 
-	// Format distance for display
-	function formatDistance(distance: number) {
-		if (distance < 1000) {
-			return `${distance} m`;
-		} else {
-			const km = distance / 1000;
-			return `${km.toFixed(1)} km`;
-		}
-	}
+	// Import utility functions
+	import { formatDistance } from '$lib/utils/dateUtils';
 
 	// Handle building selection
 	async function handleBuildingSelect(selected: string | number | null) {
