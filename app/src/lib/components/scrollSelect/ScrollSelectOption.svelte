@@ -24,12 +24,7 @@
     Conditional classes highlight the selected option.
   -->
 <div
-	class={[
-		'scroll-option snap-center',
-		props.class,
-		isSelected && selectedClass,
-		!isSelected && notSelectedClass
-	]}
+	class={['scroll-option snap-center', props.class, isSelected ? selectedClass : notSelectedClass]}
 	data-value={value}
 	role="radio"
 	aria-checked={isSelected}

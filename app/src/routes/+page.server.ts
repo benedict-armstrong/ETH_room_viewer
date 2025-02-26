@@ -1,7 +1,13 @@
 import type { PageServerLoad } from './$types';
 import { db } from '$lib/server/db';
-import { sql } from 'drizzle-orm';
+import { sql, eq, desc } from 'drizzle-orm';
 import { Room } from '$lib/server/db/schema';
+
+export interface BuildingWithFloors {
+	name: string;
+	distance: number | null;
+	floors: string[];
+}
 
 export const load: PageServerLoad = async ({ cookies }) => {
 	// get the query string from location cookie
@@ -9,38 +15,57 @@ export const load: PageServerLoad = async ({ cookies }) => {
 	const latitude = location?.latitude;
 	const longitude = location?.longitude;
 
+	const buildings: BuildingWithFloors[] = [];
+
 	if (!latitude || !longitude) {
-		const buildings = await db
-			.selectDistinct({ building: Room.building })
+		// Get buildings without distance
+		const buildingsQuery = await db
+			.selectDistinct({ building: Room.building, area: Room.area })
 			.from(Room)
-			.orderBy(Room.building);
-		// add distance to each room
-		return { buildings: buildings.map((b) => ({ ...b, distance: null })) };
+			.orderBy(desc(Room.area), Room.building);
+
+		// For each building, get its floors
+		for (const b of buildingsQuery) {
+			const floors = await db
+				.selectDistinct({ floor: Room.floor })
+				.from(Room)
+				.where(eq(Room.building, b.building))
+				.orderBy(Room.floor);
+
+			buildings.push({
+				name: b.building,
+				distance: null,
+				floors: floors.map((f) => f.floor)
+			});
+		}
+	} else {
+		const sqlPoint = sql`ST_SetSRID(ST_MakePoint(${latitude}, ${longitude}), 4326)`;
+
+		// Get buildings with distances
+		const buildingsWithDistance = await db
+			.selectDistinct({
+				building: Room.building,
+				distance: sql<number>`ST_Distance(${Room.location}, ${sqlPoint}, TRUE)`.as('distance'),
+				orderDistance: sql`${Room.location} <-> ${sqlPoint}`.as('orderDistance')
+			})
+			.from(Room)
+			.orderBy(sql`"orderDistance"`);
+
+		// For each building, get its floors
+		for (const b of buildingsWithDistance) {
+			const floors = await db
+				.selectDistinct({ floor: Room.floor })
+				.from(Room)
+				.where(eq(Room.building, b.building))
+				.orderBy(Room.floor);
+
+			buildings.push({
+				name: b.building,
+				distance: b.distance,
+				floors: floors.map((f) => f.floor)
+			});
+		}
 	}
 
-	const sqlPoint = sql`ST_SetSRID(ST_MakePoint(${latitude}, ${longitude}), 4326)`;
-
-	// Build the subquery with the ordering expression included
-	const subquery = db
-		.selectDistinct({
-			building: Room.building,
-			distance: sql<number>`ST_Distance(${Room.location}, ${sqlPoint}, TRUE)`.as('distance'),
-			orderDistance: sql`${Room.location} <-> ${sqlPoint}`.as('orderDistance')
-		})
-		.from(Room)
-		.as('sub');
-
-	// Now select only the desired columns and order by the ordering expression
-	const buildings = await db
-		.select({
-			building: subquery.building,
-			distance: subquery.distance
-		})
-		.from(subquery)
-		.orderBy(subquery.orderDistance);
-
-	console.log(buildings[0].distance);
-
-	// return buildings
 	return { buildings };
 };

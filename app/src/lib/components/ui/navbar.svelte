@@ -8,7 +8,7 @@
 
 <nav class="fixed z-20 flex w-full justify-center bg-[#273F76] p-3 shadow-lg">
 	<span class="border-r border-white px-3">
-		<a href="/rooms">
+		<a href="/">
 			<svg
 				class="mx-auto -mt-1 inline h-8 w-8 stroke-white"
 				width="100%"
@@ -40,6 +40,6 @@
 		</a>
 	</span>
 	<span class="px-3 text-white">
-		<a href="/about">About</a>
+		<a class="hover:underline" href="/about">About</a>
 	</span>
 </nav>

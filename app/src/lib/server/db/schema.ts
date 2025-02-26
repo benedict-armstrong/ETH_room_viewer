@@ -70,3 +70,19 @@ export const Booking = pgTable('Booking', {
 		.notNull()
 		.references(() => Room.id)
 });
+
+// RoomType
+export type SelectRoom = typeof Room.$inferSelect;
+export type InsertRoom = typeof Room.$inferInsert;
+
+// MapData
+export type SelectMapData = typeof MapData.$inferSelect;
+export type InsertMapData = typeof MapData.$inferInsert;
+
+// Event
+export type SelectEvent = typeof Event.$inferSelect;
+export type InsertEvent = typeof Event.$inferInsert;
+
+// Booking
+export type SelectBooking = typeof Booking.$inferSelect;
+export type InsertBooking = typeof Booking.$inferInsert;
