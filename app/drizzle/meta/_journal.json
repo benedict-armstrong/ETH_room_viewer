@@ -8,6 +8,13 @@
       "when": 1740593771386,
       "tag": "0000_productive_menace",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1740597905770,
+      "tag": "0001_stiff_molten_man",
+      "breakpoints": true
     }
   ]
 }

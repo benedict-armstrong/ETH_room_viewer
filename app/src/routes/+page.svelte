@@ -38,7 +38,7 @@
 	let { data }: PageProps = $props();
 </script>
 
-<p class="text-md text-center text-gray-500">
+<p class="text-md m-2 text-center text-gray-500">
 	Select the building and floor where you want to find a free room
 </p>
 

@@ -6,6 +6,7 @@ import {
 	timestamp,
 	index,
 	unique,
+	text,
 	geometry
 } from 'drizzle-orm/pg-core';
 import { SQL, sql } from 'drizzle-orm';
@@ -69,6 +70,14 @@ export const Booking = pgTable('Booking', {
 	roomId: integer('room_id')
 		.notNull()
 		.references(() => Room.id)
+});
+
+// DataFetch table
+export const DataFetch = pgTable('DataFetch', {
+	id: serial('id').primaryKey(),
+	fetchTime: timestamp('fetch_time').notNull(),
+	fetchDuration: integer('fetch_duration').notNull(),
+	fetchStatus: text('fetch_status').notNull()
 });
 
 // RoomType

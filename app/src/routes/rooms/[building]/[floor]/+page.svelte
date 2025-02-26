@@ -182,7 +182,7 @@
 										<span
 											class="rounded-full bg-red-100 px-3 py-1 text-sm font-medium text-red-800"
 										>
-											Until {formatTime(room.currentBooking?.end || new Date())}
+											{formatTime(room.currentBooking?.end || new Date())}
 										</span>
 										{#if !expandedRooms.has(room.id)}
 											<svg

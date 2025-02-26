@@ -19,7 +19,7 @@
 
 	let container: HTMLDivElement;
 	let searchString = '';
-	let searchTimeout: number | null = null;
+	let searchTimeout: NodeJS.Timeout | null = null;
 
 	// Handle scrolling by determining which child is nearest to the center.
 	function handleScroll(): void {

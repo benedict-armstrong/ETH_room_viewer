@@ -15,7 +15,6 @@
 
 	let selectedBuilding: string | undefined = $state();
 	let selectedFloor: string | undefined = $state();
-	let floorSelectorEnabled = $state(false);
 	let floorSelectorElement: HTMLDivElement | undefined = $state();
 	let currentBuilding: BuildingWithFloors | undefined = $state();
 
@@ -38,9 +37,6 @@
 			selectedFloor = undefined;
 			selectedBuilding = selected as string;
 			currentBuilding = data.buildings.find((b: BuildingWithFloors) => b.name === selectedBuilding);
-
-			// Enable the floor selector
-			floorSelectorEnabled = true;
 
 			// Automatically open the floor selector after a short delay
 			setTimeout(() => {
@@ -72,7 +68,6 @@
 		if (buildingParam) {
 			selectedBuilding = buildingParam;
 			currentBuilding = data.buildings.find((b: BuildingWithFloors) => b.name === selectedBuilding);
-			floorSelectorEnabled = true;
 		}
 	});
 </script>
@@ -106,16 +101,16 @@
 	</OptionBox>
 
 	<!-- Floor Selector - only enabled after building selection -->
-	{#if currentBuilding}
-		<div bind:this={floorSelectorElement}>
-			<OptionBox
-				title={`Select Floor (${currentBuilding.name}):`}
-				selectedLabel="Floor:"
-				select={handleFloorSelect}
-				initialValue={selectedFloor}
-				disabled={!floorSelectorEnabled}
-				class="m-3 rounded-lg bg-[#9EBD6E] outline-[#9EBD6E] focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-solid"
-			>
+	<div bind:this={floorSelectorElement}>
+		<OptionBox
+			title={`Select Floor (${currentBuilding?.name || ''}):`}
+			selectedLabel="Floor:"
+			select={handleFloorSelect}
+			initialValue={selectedFloor}
+			disabled={!currentBuilding}
+			class="m-3 rounded-lg bg-[#9EBD6E] outline-[#9EBD6E] focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-solid"
+		>
+			{#if currentBuilding}
 				{#each currentBuilding.floors as floor}
 					<ScrollSelectOption
 						value={floor}
@@ -126,7 +121,7 @@
 						{floor}
 					</ScrollSelectOption>
 				{/each}
-			</OptionBox>
-		</div>
-	{/if}
+			{/if}
+		</OptionBox>
+	</div>
 </div>

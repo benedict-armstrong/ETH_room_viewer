@@ -1,11 +1,10 @@
-import { Room, Booking, Event } from './db/schema';
+import { Room, Booking, Event, DataFetch } from './db/schema';
 import { db } from './db';
 import { eq, and, isNull } from 'drizzle-orm';
 import { format } from 'date-fns';
 
 function booking_url(room_name: string, from_date: Date, to_date: Date): string {
 	// Dates to %Y-%m-%d format
-
 	return `https://ethz.ch/bin/ethz/roominfo?path=/rooms/${room_name}/allocations&from=${format(from_date, 'yyyy-MM-dd')}&to=${format(to_date, 'yyyy-MM-dd')}`;
 }
 
@@ -125,6 +124,7 @@ async function fetch_bookings_for_room(roomId: number) {
 }
 
 export async function fetch_bookings() {
+	const fetchStartTime = new Date();
 	try {
 		console.log('Fetching bookings from API');
 
@@ -158,9 +158,7 @@ export async function fetch_bookings() {
 						building: new_room.building,
 						area: new_room.area,
 						region: new_room.region,
-						type: new_room.type,
-						latitude: new_room.latitude,
-						longitude: new_room.longitude
+						type: new_room.type
 					})
 					.returning({
 						id: Room.id
@@ -171,7 +169,22 @@ export async function fetch_bookings() {
 
 			fetch_bookings_for_room(roomId);
 		}
+
+		const fetchEndTime = new Date();
+		const fetchDuration = fetchEndTime.getTime() - fetchStartTime.getTime();
+
+		await db.insert(DataFetch).values({
+			fetchTime: fetchStartTime,
+			fetchDuration: fetchDuration,
+			fetchStatus: 'OK'
+		});
 	} catch (error) {
 		console.error('Error fetching API data:', error);
+		await db.insert(DataFetch).values({
+			fetchTime: fetchStartTime,
+			fetchDuration: 0,
+			fetchStatus: `Error: ${error}`
+		});
+		throw error;
 	}
 }
