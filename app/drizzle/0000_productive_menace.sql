@@ -38,4 +38,5 @@ CREATE TABLE "Room" (
 --> statement-breakpoint
 ALTER TABLE "Booking" ADD CONSTRAINT "Booking_event_id_Event_id_fk" FOREIGN KEY ("event_id") REFERENCES "public"."Event"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "Booking" ADD CONSTRAINT "Booking_room_id_Room_id_fk" FOREIGN KEY ("room_id") REFERENCES "public"."Room"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "MapData" ADD CONSTRAINT "MapData_room_id_Room_id_fk" FOREIGN KEY ("room_id") REFERENCES "public"."Room"("id") ON DELETE no action ON UPDATE no action;
+ALTER TABLE "MapData" ADD CONSTRAINT "MapData_room_id_Room_id_fk" FOREIGN KEY ("room_id") REFERENCES "public"."Room"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+CREATE INDEX "spatial_index" ON "Room" USING gist ("location");

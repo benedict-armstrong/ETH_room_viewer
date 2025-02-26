@@ -1,1 +1,0 @@
-CREATE INDEX "spatial_index" ON "Room" USING gist ("location");

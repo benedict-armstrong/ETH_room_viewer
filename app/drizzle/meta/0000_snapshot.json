@@ -1,5 +1,5 @@
 {
-  "id": "6945364c-d229-41f6-bebe-e550f17f2ab6",
+  "id": "8ae76765-dce8-4b13-b04a-7f28988a9716",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -245,7 +245,23 @@
           }
         }
       },
-      "indexes": {},
+      "indexes": {
+        "spatial_index": {
+          "name": "spatial_index",
+          "columns": [
+            {
+              "expression": "location",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "gist",
+          "with": {}
+        }
+      },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
