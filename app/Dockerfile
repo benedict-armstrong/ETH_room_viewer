@@ -19,7 +19,7 @@ COPY --from=builder /app/package.json .
 COPY --from=builder /app/package-lock.json .
 
 # Install production dependencies only
-RUN npm ci --production
+RUN npm ci --omit=dev
 
 EXPOSE 3000
 

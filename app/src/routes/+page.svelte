@@ -18,7 +18,11 @@
 		replaceState(url, { building, floor });
 
 		// Navigate to the room view
-		goto(`/rooms/${building}/${floor}`);
+		if (selectedService === 'room') {
+			goto(`/rooms/${building}/${floor}`);
+		} else {
+			goto(`/printers/${building}/${floor}`);
+		}
 	}
 
 	function handleServiceSelect(service: 'printer' | 'room') {
