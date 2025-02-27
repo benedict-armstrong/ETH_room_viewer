@@ -34,6 +34,8 @@
 			if (scrollSelectElement instanceof HTMLElement) {
 				scrollSelectElement.focus();
 			}
+			// Scroll the element into view
+			optionBoxElement?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 		}, 10);
 	}
 
@@ -55,10 +57,12 @@
 	bind:this={optionBoxElement}
 	class={[
 		className,
-		open && 'h-[500px]',
-		!open && 'h-[70px]',
-		disabled && 'cursor-not-allowed opacity-60'
-	]}
+		open ? 'h-124' : 'h-16',
+		disabled && 'cursor-not-allowed opacity-60',
+		'duration-DEFAULT transition-all'
+	]
+		.filter(Boolean)
+		.join(' ')}
 >
 	{#if open}
 		<div class="flex h-full flex-col">
@@ -69,14 +73,14 @@
 				{@render props.children?.()}
 			</ScrollSelect>
 			<div class="grow-0">
-				<p class="m-2 text-right text-xs font-bold text-white md:text-sm">
+				<p class="m-2 text-right text-xs font-bold text-white/80 md:text-sm">
 					Enter or click to select
 				</p>
 			</div>
 		</div>
 	{:else}
 		<div
-			class="flex h-full items-center justify-center text-4xl font-black text-white"
+			class="hover:bg-opacity-90 focus:bg-opacity-90 duration-DEFAULT flex h-full items-center justify-center text-4xl font-black text-white transition-all"
 			tabindex={disabled ? -1 : 0}
 			onclick={openSelection}
 			onkeydown={(e) => {
@@ -93,7 +97,7 @@
 			{#if selected}
 				<div>{selected}</div>
 			{:else}
-				<div class="m-4 text-2xl font-black text-white">-</div>
+				<div class="m-4 text-2xl font-black text-white/80">-</div>
 			{/if}
 		</div>
 	{/if}

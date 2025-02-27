@@ -3,33 +3,50 @@
 		onSelect: (service: 'printer' | 'room') => void;
 	}>();
 
-	let selected: 'printer' | 'room' | null = $state(null);
+	let selected: 'printer' | 'room' = $state('printer');
 
 	function handleSelect(service: 'printer' | 'room') {
 		selected = service;
 		onSelect(service);
 	}
+
+	function handleKeydown(event: KeyboardEvent, service: 'printer' | 'room') {
+		if (event.key === 'Enter' || event.key === ' ') {
+			event.preventDefault();
+			handleSelect(service);
+		}
+	}
 </script>
 
-<div class="flex flex-col space-y-4">
-	<div class="my-2 grid h-20 grid-cols-2 gap-4">
+<div class="flex flex-col space-y-4" role="group" aria-label="Service selection">
+	<div class="my-2 grid h-16 grid-cols-2 gap-4">
 		<button
-			class="bg-primary outline-primary duration-DEFAULT hover:bg-primary-light rounded-lg text-center text-2xl font-black text-white transition-all focus:outline-2 focus:outline-offset-2 {selected ===
-			'printer'
-				? 'ring-primary-light/50 ring-4'
-				: ''}"
+			class="bg-primary outline-primary duration-DEFAULT hover:bg-primary-light focus:bg-primary-light rounded-lg text-center text-2xl font-black text-white transition-all focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-solid {selected !=
+				'printer' && 'opacity-30'}"
 			onclick={() => handleSelect('printer')}
+			onkeydown={(e) => handleKeydown(e, 'printer')}
+			aria-pressed={selected === 'printer'}
+			aria-label="Select printer service"
+			tabindex="0"
 		>
-			Find Printer
+			<span class="flex items-center justify-center gap-2">
+				<i class="bi bi-printer text-xl"></i>
+				<span>Printer</span>
+			</span>
 		</button>
 		<button
-			class="bg-accent outline-accent duration-DEFAULT hover:bg-accent-light rounded-lg text-center text-2xl font-black text-white transition-all focus:outline-2 focus:outline-offset-2 {selected ===
-			'room'
-				? 'ring-accent-light/50 ring-4'
-				: ''}"
+			class="bg-accent outline-accent duration-DEFAULT hover:bg-accent-light focus:bg-accent-light rounded-lg text-center text-2xl font-black text-white transition-all focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-solid {selected !=
+				'room' && 'opacity-30'}"
 			onclick={() => handleSelect('room')}
+			onkeydown={(e) => handleKeydown(e, 'room')}
+			aria-pressed={selected === 'room'}
+			aria-label="Select room service"
+			tabindex="0"
 		>
-			Find Room
+			<span class="flex items-center justify-center gap-2">
+				<i class="bi bi-door-open text-xl"></i>
+				<span>Room</span>
+			</span>
 		</button>
 	</div>
 </div>

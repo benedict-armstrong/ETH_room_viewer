@@ -18,7 +18,7 @@
 	onMount(() => (ready = true));
 </script>
 
-<nav class="fixed z-20 flex w-full items-center justify-between bg-[#273F76] p-3 shadow-lg">
+<nav class="bg-primary fixed z-20 flex w-full items-center justify-between p-3 shadow-lg">
 	<div class="flex items-center">
 		<span class="border-r border-white px-3">
 			<a href="/">

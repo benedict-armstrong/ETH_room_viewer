@@ -15,6 +15,13 @@
       "when": 1740597905770,
       "tag": "0001_stiff_molten_man",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1740678675932,
+      "tag": "0002_young_frightful_four",
+      "breakpoints": true
     }
   ]
 }

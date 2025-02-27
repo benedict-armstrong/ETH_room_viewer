@@ -9,7 +9,7 @@ interface Booking {
 	eventName: string;
 }
 
-interface RoomWithBookings {
+export interface RoomWithBookings {
 	id: number;
 	name: string;
 	room: string;

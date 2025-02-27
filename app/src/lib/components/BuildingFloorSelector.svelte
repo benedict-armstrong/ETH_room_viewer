@@ -8,10 +8,15 @@
 		buildings: BuildingWithFloors[];
 	}
 
-	let { data, selectionCallback } = $props<{
+	let {
+		data,
+		disabled,
+		selectionCallback
+	}: {
 		data: PageData;
+		disabled: boolean;
 		selectionCallback: (building: string, floor: string) => void;
-	}>();
+	} = $props();
 
 	let selectedBuilding: string | undefined = $state();
 	let selectedFloor: string | undefined = $state();
@@ -72,11 +77,13 @@
 		selectedLabel="Building:"
 		select={handleBuildingSelect}
 		initialValue={selectedBuilding}
-		class="my-3 rounded-lg bg-[#273F76] outline-[#273F76] focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-solid"
+		{disabled}
+		class="bg-primary outline-primary my-3 rounded-lg focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-solid"
 	>
 		{#each data.buildings as building}
 			<ScrollSelectOption
 				value={building.name}
+				initialValue={data.buildings[0].name}
 				class="flex h-12 items-center justify-center font-black"
 				selectedClass="text-white text-4xl"
 				notSelectedClass="text-gray-300 text-2xl opacity-80"
@@ -100,8 +107,8 @@
 			selectedLabel="Floor:"
 			select={handleFloorSelect}
 			initialValue={selectedFloor}
-			disabled={!currentBuilding}
-			class="my-3 rounded-lg bg-[#9EBD6E] outline-[#9EBD6E] focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-solid"
+			disabled={!currentBuilding || disabled}
+			class="bg-accent outline-accent my-3 rounded-lg focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-solid"
 		>
 			{#if currentBuilding}
 				{#each currentBuilding.floors as floor}
