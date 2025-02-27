@@ -72,7 +72,7 @@
 		selectedLabel="Building:"
 		select={handleBuildingSelect}
 		initialValue={selectedBuilding}
-		class="m-3 rounded-lg bg-[#273F76] outline-[#273F76] focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-solid"
+		class="my-3 rounded-lg bg-[#273F76] outline-[#273F76] focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-solid"
 	>
 		{#each data.buildings as building}
 			<ScrollSelectOption
@@ -101,7 +101,7 @@
 			select={handleFloorSelect}
 			initialValue={selectedFloor}
 			disabled={!currentBuilding}
-			class="m-3 rounded-lg bg-[#9EBD6E] outline-[#9EBD6E] focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-solid"
+			class="my-3 rounded-lg bg-[#9EBD6E] outline-[#9EBD6E] focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-solid"
 		>
 			{#if currentBuilding}
 				{#each currentBuilding.floors as floor}

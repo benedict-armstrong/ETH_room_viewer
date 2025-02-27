@@ -43,6 +43,7 @@
 	},
 	"dependencies": {
 		"@date-fns/tz": "^1.2.0",
+		"bootstrap-icons": "^1.11.3",
 		"date-fns": "^4.1.0",
 		"drizzle-orm": "^0.38.4",
 		"node-cron": "^3.0.3",

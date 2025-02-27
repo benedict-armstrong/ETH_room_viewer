@@ -72,6 +72,16 @@ export const Booking = pgTable('Booking', {
 		.references(() => Room.id)
 });
 
+// Printer table
+export const Printer = pgTable('Printer', {
+	id: serial('id').primaryKey(),
+	name: varchar('name', { length: 255 }).notNull(),
+	type: varchar('type', { length: 255 }).notNull(),
+	roomId: integer('room_id')
+		.notNull()
+		.references(() => Room.id)
+});
+
 // DataFetch table
 export const DataFetch = pgTable('DataFetch', {
 	id: serial('id').primaryKey(),
