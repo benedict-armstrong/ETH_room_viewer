@@ -1,12 +1,16 @@
 @theme {
 	/* Brand Colors */
-	--color-primary: #003049;
-	--color-primary-light: #004266;
-	--color-primary-dark: #002033;
+	--color-primary: #273f76;
+	--color-primary-light: #3b5a9c;
+	--color-primary-dark: #1a2b4f;
 
-	--color-secondary: #d62828;
-	--color-secondary-light: #e04141;
-	--color-secondary-dark: #b22222;
+	--color-secondary: #a52422;
+	--color-secondary-light: #c12b29;
+	--color-secondary-dark: #8a1e1c;
+
+	--color-gray: #d5d5d5;
+	--color-gray-light: #e5e5e5;
+	--color-gray-dark: #c5c5c5;
 
 	--color-accent: #f77f00;
 	--color-accent-light: #ff9419;
@@ -21,7 +25,7 @@
 	--color-background-dark: #e4d9a5;
 
 	/* Typography */
-	--font-sans: 'Inter', system-ui, sans-serif;
+	--font-sans: 'Open Sans', system-ui, sans-serif;
 	--font-mono: 'JetBrains Mono', monospace;
 
 	/* Font Sizes */

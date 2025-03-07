@@ -108,7 +108,7 @@
 			select={handleFloorSelect}
 			initialValue={selectedFloor}
 			disabled={!currentBuilding || disabled}
-			class="bg-accent outline-accent my-3 rounded-lg focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-solid"
+			class="bg-primary outline-primary my-3 rounded-lg focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-solid"
 		>
 			{#if currentBuilding}
 				{#each currentBuilding.floors as floor}

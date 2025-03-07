@@ -6,6 +6,13 @@ CREATE TABLE "Booking" (
 	"room_id" integer NOT NULL
 );
 --> statement-breakpoint
+CREATE TABLE "DataFetch" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"fetch_time" timestamp NOT NULL,
+	"fetch_duration" integer NOT NULL,
+	"fetch_status" text NOT NULL
+);
+--> statement-breakpoint
 CREATE TABLE "Event" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"name" varchar(255) NOT NULL,
@@ -21,6 +28,13 @@ CREATE TABLE "MapData" (
 	"width" varchar(10),
 	"room_id" integer NOT NULL,
 	CONSTRAINT "MapData_room_id_unique" UNIQUE("room_id")
+);
+--> statement-breakpoint
+CREATE TABLE "Printer" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"name" varchar(255) NOT NULL,
+	"type" varchar(255) NOT NULL,
+	"room_id" integer NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "Room" (
@@ -39,4 +53,5 @@ CREATE TABLE "Room" (
 ALTER TABLE "Booking" ADD CONSTRAINT "Booking_event_id_Event_id_fk" FOREIGN KEY ("event_id") REFERENCES "public"."Event"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "Booking" ADD CONSTRAINT "Booking_room_id_Room_id_fk" FOREIGN KEY ("room_id") REFERENCES "public"."Room"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "MapData" ADD CONSTRAINT "MapData_room_id_Room_id_fk" FOREIGN KEY ("room_id") REFERENCES "public"."Room"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "Printer" ADD CONSTRAINT "Printer_room_id_Room_id_fk" FOREIGN KEY ("room_id") REFERENCES "public"."Room"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 CREATE INDEX "spatial_index" ON "Room" USING gist ("location");

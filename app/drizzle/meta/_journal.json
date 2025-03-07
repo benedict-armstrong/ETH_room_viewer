@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1740593771386,
-      "tag": "0000_productive_menace",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1740597905770,
-      "tag": "0001_stiff_molten_man",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1740678675932,
-      "tag": "0002_young_frightful_four",
+      "when": 1741365002362,
+      "tag": "0000_thick_tarot",
       "breakpoints": true
     }
   ]

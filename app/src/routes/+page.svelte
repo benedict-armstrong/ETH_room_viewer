@@ -5,7 +5,7 @@
 	import ServiceSelector from '$lib/components/ServiceSelector.svelte';
 	import InfoMenu from '$lib/components/InfoMenu.svelte';
 
-	let selectedService = $state<'printer' | 'room'>('printer');
+	let selectedService = $state<'printer' | 'room'>('room');
 
 	/**
 	 * Handle building and floor selection
@@ -35,7 +35,7 @@
 <div class="flex flex-col">
 	<div class="p-4">
 		<div class="text-2xl font-black">Find:</div>
-		<ServiceSelector onSelect={handleServiceSelect} />
+		<ServiceSelector onSelect={handleServiceSelect} initialService={selectedService} />
 		<div class="text-2xl font-black">at:</div>
 		{#if data}
 			<BuildingFloorSelector
